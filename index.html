@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <title>Cloth Line Sky Ward</title>
+        <link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <!-- NOTE: head-page -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Cloth Line Sky Ward</h1>
+                </div>
+            </div>
+        </div>
+        <!-- NOTE: front-page -->
+        <div class="container" id="front-page">
+            <div class="row">
+               <div class="col-md-2">
+                   <h4>ID : </h4>
+               </div>
+                <div class="col-md-3">
+                    <!-- NOTE: user-input -->
+                    <input type="text" class="form-control" id="user-input" placeholder="input your ID">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <h4>Password :</h4>
+                </div>
+                <div class="col-md-3">
+                    <!-- NOTE: pass-input -->
+                    <input type="password" class="form-control" id="pass-input" placeholder="input your password">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <!-- NOTE: register-btn -->
+                    <button type="button" class="btn btn-warning btn-lg" id="register-btn">Register</button>
+                </div>
+                <div class="col-md-2">
+                    <!-- NOTE: login-btn -->
+                    <button type="button" class="btn btn-success btn-lg" id="login-btn">Login</button>
+                </div>
+            </div>
+        </div>
+        <script src="jquery-2.1.4.min.js"></script>
+        <script>
+            //NOTE: Page Variable
+            var front_page = $("#front-page").val()
+            
+            //NOTE: Local Element Variable
+            var user;
+            var pass;
+            
+            //NOTE: Server Element Variable
+            var user-sv;
+            var pass-sv;
+            
+            //NOTE: Hide unused page
+            
+            //NOTE: Check ID and pass
+            function checkAccount(){
+                user = $("#user-input").val()
+                pass = $("#pass-input").val()
+                var num_account = $.get(
+            }
+                    
+            //NOTE: Group of resource loader function
+        </script>
+    </body>
+</html>
