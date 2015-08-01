@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Register Clothes line Sky Ward</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="bootstrap-material-design/dist/css/ripples.min.css">
+        <link rel="stylesheet" href="bootstrap-material-design/dist/css/material.min.css">
+        <link rel="stylesheet" href="bootstrap-material-design/dist/css/roboto.min.css">
+
+    </head>
+    <body>
+        <div class="container">
+            <!-- NOTE: Jumbotron -->
+            <div class="jumbotron">
+                <div class="text-center">
+                    <h1>Clothes line Sky Ward</h1>
+                </div>
+                <div class="register">
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <legend>Register form : </legend>
+                            <div class="form-group">
+                                <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label" for="inputDefault">Username</label>
+                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                    <input type="text" class="form-control" id="inputUsername" placeholder="Username">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">Password</label>
+                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">Re-enter Password</label>
+                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                    <input type="password" class="form-control" id="reInputPassword" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">Email</label>
+                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2">
+                                    <a class="btn btn-default">Cancel</a>
+                                    <button type="button" class="btn btn-primary" id="submit-btn">Submit</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <!-- NOTE: /Jumbotron -->
+        </div>
+        <script src="jquery-2.1.4.min.js"></script>
+        <script src="bootstrap-material-design\dist\js\ripples.min.js"></script>
+        <script src="bootstrap-material-design\dist\js\material.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                // This command is used to initialize some elements and make them work properly
+                $.material.init();
+            });
+
+            var username;
+            var password;
+            var repassword;
+            var email;
+            function register() {
+                username = $("#inputUsername").val();
+                password = $("#inputPassword").val();
+                repassword = $("#reInputPassword").val();
+                email = $("#inputEmail").val();
+                console.log('user : '+username+'\npass : '+ password+'\nrepass : '+repassword+'\nemail : '+email);
+                /*TODO: Send to the IoT server service
+                1.for loop to look up all the username
+                    1.1 check that username has not been pick
+                2.send information to IoT
+                3.go to top page*/
+            }
+            $("#submit-btn").click(register);
+        </script>
+    </body>
+</html>
