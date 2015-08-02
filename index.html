@@ -58,6 +58,36 @@
             </div>
          </div>
       </div>
+      
+      <!-- NOTE: Nav-bar -->
+      <div class="container" id="nav-part">
+          <div class="row">
+              <div class="col-md-12">
+                  <div class="navbar navbar-inverse">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand active" href="javascript:void(0)">ClotheslineSkyWard</a>
+    </div>
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="javascript:void(0)">Home</a></li>
+            <li><a href="spec.html">Specification</a></li>
+            <li><a href="hero.html">Hero</a></li>
+            
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="about.html">About us</a></li>
+            <li><a href="https://github.com/PNNutkung/Clothes-Line-Sky-Ward/ " target="_blank">GitHub</a></li>
+        </ul>
+    </div>
+</div>
+              </div>
+          </div>
+      </div>
       <!-- NOTE: front-page -->
       <div class="container" id="front-page">
          <script>$("#front-page").hide()</script>
@@ -70,11 +100,13 @@
             <!-- NOTE: /Login failed -->
             <div class="row rowID">
                <div class="col-md-2 col-sm-2 IDtext text-center">
-                  <h4>ID</h4>
+                  <h4>Username</h4>
                </div>
                <div class="col-md-8 col-sm-8 inputText">
                   <!-- NOTE: user-input -->
-                  <input type="text" class="form-control" id="user-input" placeholder="input your ID" style="font-size:20px">
+                  <form id="formID">
+                  <input type="text" class="form-control" id="user-input" placeholder="input your username" style="font-size:20px">
+                   </form>
                </div>
             </div>
             <div class="row rowID">
@@ -83,7 +115,9 @@
                </div>
                <div class="col-md-8 col-sm-8 inputText">
                   <!-- NOTE: pass-input -->
+                  <form id="formPass">
                   <input type="password" class="form-control" id="pass-input" placeholder="input your password" style="font-size:20px">
+                  </form>
                </div>
             </div>
             <div class="row text-center">
@@ -310,12 +344,18 @@
              var dat = mode+"_"+state
              $.post("http://exceed.cupco.de/iot/SeatBelt/board",{data:dat})
          }
+         function enterToLogin(){
+             goToMainPage();
+             return false;
+         }
          //Button ActionListener
          $(".close").click(hide);
          $("#login-btn").click(goToMainPage)
          $("#logout-btn").click(goToFrontPage)
          $("#auto-btn").click(changeToAuto);
          $("#state-btn").click(postState);
+         $("#formID").submit(enterToLogin);
+         $("#formPass").submit(enterToLogin);
       </script>
    </body>
 </html>

@@ -27,7 +27,7 @@ h1 {
 
 @keyframes color-change {
     10% { color: darkseagreen; }
-    20% { color: antiquewhite; }
+    20% { color: rosybrown; }
     30% { color: plum; }
     40% { color: darksalmon; }
     50% { color: seagreen; }
@@ -115,4 +115,14 @@ h4 {
 #inputEmail {
     position: relative;
     bottom: -7px;
+}
+
+#front-page {
+    position: relative;
+    top: -40px;
+}
+
+#nav-part {
+    position: relative;
+    top: -20px;
 }
