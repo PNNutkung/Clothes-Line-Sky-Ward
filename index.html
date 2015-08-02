@@ -179,6 +179,7 @@
     var user;
     var pass;
     var num_current;
+    var interval = setInterval(refresh,1000);
 
     //NOTE: Boolean Variable
     var isLogin = false;
@@ -214,6 +215,7 @@
     //NOTE: Switch to Front Page
     function goToFrontPage(){
         isLogin = false
+        clearInterval(interval)
         main_page.fadeOut();
         front_page.fadeIn();
     }
@@ -230,32 +232,46 @@
     //NOTE: Update GUI
         function updateGUI(){
         $("#state").text(state);
-        if (rain==="1") {
+        if (rain==1) {
             $("#rain").text("Rainning")
-            //TODO search and set image to this part.
-            //NOTE: $("rain-img").attr("src",URLIMage")
+            $("#rain-img").attr("src","images/rain.png")
         }
-        else {
+        else {  
             $("#rain").text("Dry")
-            //TODO search and set image to this part.
+            $("#rain-img").attr("src","images/sun.png")
         }
         $("#humidity").text(humidity)
-        //TODO search and set image to this part.
-        if (state==="1"){
-            $("state").text("Extend");
+        if (humidity>50) {
+            $("#humidity-img").attr("src","images/humidity2.png")
         }
-        else { $("#state").text("Keep");}
-        //TODO make button disable
+        else {
+            $("#humidity-img").attr("src","images/humidity.png")
+        }
+        if (state==1){
+            $("#state").text("Outdoor");
+            $("#state-btn").text("PULL BACK");
+        }
+        else {
+            $("#state").text("Indoor");
+            $("#state-btn").text("EXTEND")
+        }
+        if (mode==0) {
+            $("#auto-btn").removeClass("btn-warning disabled")
+            $("#auto-btn").addClass("btn-info")
+            $("#auto-btn").addClass("btn-raised")
+        }
+        else {
+            $("#auto-btn").toggleClass("btn btn-info btn-raised")
+            $("#auto-btn").addClass("btn btn-warning disabled")
+        }
     }
     //NOTE: Change button color and text when change state and post data to server
     function postState(){
-        //TODO update state and state-btn
-        //http://api.jquery.com/toggleclass/ เผื่อใช้เปลี่ยนสีได้
-        if (state==="1") {
-            state="0"
+        if (state==1) {
+            state=0
         }
         else {
-            state="1"
+            state=1
         }
         mode = 0;
         var dat = mode+"_"+state
@@ -264,12 +280,17 @@
     function hide() {
         $(".alert").hide();
     }
-
+    function changeToAuto(){
+        mode = 1;
+        var dat = mode+"_"+state
+        $.post("http://exceed.cupco.de/iot/SeatBelt/board",{data:dat})
+    }
     //Button ActionListener
     $(".close").click(hide);
     $("#login-btn").click(goToMainPage)
     $("#logout-btn").click(goToFrontPage)
-
+    $("#auto-btn").click(changeToAuto);
+    $("#state-btn").click(postState);
 </script>
     </body>
 </html>
