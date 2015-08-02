@@ -7,6 +7,7 @@
       <link rel="stylesheet" href="bootstrap-material-design/dist/css/ripples.min.css">
       <link rel="stylesheet" href="bootstrap-material-design/dist/css/material-fullpalette.css">
       <link rel="stylesheet" href="bootstrap-material-design/dist/css/roboto.min.css">
+      <link rel="stylesheet" href="animate.css">
       <link rel="stylesheet" href="style.css">
    </head>
    <body>
@@ -19,9 +20,11 @@
          var user_list;
          var pass_list;
          var mode;
-         var humidity;
+         var temp;
          var rain;
          var state;
+        var light;
+          var pos;
          //NOTE: Group of resource loader function
          //NOTE: Load list of id
          function onLoadedUserList(result){
@@ -34,10 +37,12 @@
          //NOTE: Load data
          function onLoadedData(result){
              var result_list = result.split("_")
-             humidity = result_list[0]
+             temp = result_list[0]
              rain = result_list[1]
              mode = result_list[2]
              state = result_list[3]
+             light = result_list[4]
+             pos = result_list[5]
          }
          
          //NOTE: Load every reaource
@@ -142,8 +147,8 @@
                      <div class="carousel-inner">
                         <div class="item active">
                            <!-- TODO: Find new picture -->
-                           <img src="images/humidity2.png" alt="" class="img-responsive weather-img" id="humidity-img">
-                           <div class="text-center weather-text" id="humidity">
+                           <img src="images/humidity2.png" alt="" class="img-responsive weather-img" id="li-img">
+                           <div class="text-center weather-text" id="li">
                               Humidity: 0
                            </div>
                         </div>
@@ -176,9 +181,26 @@
                      <div class="carousel-inner">
                         <div class="item active">
                            <!-- TODO: Find new picture -->
-                           <img src="images/humidity2.png" alt="" class="img-responsive weather-img" id="humidity-img">
-                           <div class="text-center weather-text" id="humidity">
-                              Humidity: 0
+                           <!--
+                           <img src="images/temperature.png" alt="" class="img-responsive weather-img" id="temperature-img">
+                           <div class="text-center weather-text" id="temperature">
+                              0 Celcieus
+                           </div>-->
+                           <div class="thermo">
+                           <div class="de">
+        <div class="den">
+          <div class="dene">
+            <div class="denem">
+              <div class="deneme">
+                <div id="degree">21</div><strong>&deg;</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+                      </div>
+                       <div class="text-center weather-text" id="thermometer">
+                              Temperature
                            </div>
                         </div>
                      </div>
@@ -267,6 +289,8 @@
          function goToMainPage(){
              $(".alert").hide();
              if (checkAccount()) {
+                 $("#user-input").removeClass("animated shake");
+                 $("#pass-input").removeClass("animated shake");
                  front_page.fadeOut()
                  main_page.fadeIn()
                  isLogin = true;
@@ -275,6 +299,8 @@
             }
             else{
                  $(".alert").fadeIn();
+                 $("#user-input").addClass("animated shake");
+                 $("#pass-input").addClass("animated shake");
              }
          }
          //NOTE: Switch to Front Page
@@ -296,19 +322,20 @@
              function updateGUI(){
              $("#state").text(state);
              if (rain==1) {
-                 $("#rain").text("Rainning")
+                 $("#rain").text("Raining")
                  $("#rain-img").attr("src","images/rain.png")
              }
              else {  
                  $("#rain").text("Dry")
                  $("#rain-img").attr("src","images/sun.png")
              }
-             $("#humidity").text("Humidity : "+humidity)
-             if (humidity>50) {
-                 $("#humidity-img").attr("src","images/humidity2.png")
+             $("#degree").text(temp)
+             $("#li").text("Light Intensity: "+light)
+             if (light>400) {
+                 $("#li-img").attr("src","images/humidity2.png")
              }
              else {
-                 $("#humidity-img").attr("src","images/humidity.png")
+                 $("#li-img").attr("src","images/humidity.png")
              }
              if (state==1){
                  $("#state").text("Outdoor");
@@ -318,7 +345,7 @@
                  $("#state").text("Indoor");
                  $("#state-btn").text("EXTEND")
              }
-             if (mode==0) {
+             if (mode=="M") {
                  $("#auto-btn").removeClass("btn-warning disabled")
                  $("#auto-btn").addClass("btn-info")
                  $("#auto-btn").addClass("btn-raised")
@@ -336,7 +363,7 @@
              else {
                  state=1
              }
-             mode = 0;
+             mode = "M";
              var dat = mode+"_"+state
              $.post("http://exceed.cupco.de/iot/SeatBelt/board",{data:dat})
          }
@@ -344,7 +371,7 @@
              $(".alert").hide();
          }
          function changeToAuto(){
-             mode = 1;
+             mode = "A";
              var dat = mode+"_"+state
              $.post("http://exceed.cupco.de/iot/SeatBelt/board",{data:dat})
          }
