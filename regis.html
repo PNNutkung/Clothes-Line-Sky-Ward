@@ -1,186 +1,186 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Register Clothes line Sky Ward</title>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="bootstrap-material-design/dist/css/ripples.min.css">
-        <link rel="stylesheet" href="bootstrap-material-design/dist/css/material.min.css">
-        <link rel="stylesheet" href="bootstrap-material-design/dist/css/roboto.min.css">
-        <link rel="stylesheet" href="style.css">
-
-    </head>
-    <body>
-        <div class="container">
-            <div class="jumbotron header">
-                <div class="text-center">
-                    <h1>Clothes line Sky Ward</h1>
-                </div>
+   <head>
+      <meta charset="utf-8">
+      <title>Register Clothes line Sky Ward</title>
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="bootstrap-material-design/dist/css/ripples.min.css">
+      <link rel="stylesheet" href="bootstrap-material-design/dist/css/material.min.css">
+      <link rel="stylesheet" href="bootstrap-material-design/dist/css/roboto.min.css">
+      <link rel="stylesheet" href="style.css">
+   </head>
+   <body>
+      <script src="jquery-2.1.4.min.js"></script>
+      <div class="container">
+         <div class="jumbotron header">
+            <div class="text-center">
+               <h1>Clothes line Sky Ward</h1>
             </div>
-        </div>
-        <div class="container">
-            <!-- NOTE: Jumbotron -->
-            <div class="jumbotron contentPopup" id="page-content-pop">
-
-                <div class="alert alert-dismissable alert-danger" id="userHasBeenPicked">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>Oh snap!</strong> This username has been used.
-                </div>
-                <div class="alert alert-dismissable alert-warning" id="warning">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>Warning!</strong> Password is not same.
-                </div>
-                <div class="alert alert-dismissable alert-danger" id="blankInput">
-                    <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>Opps!</strong> Username and Password cannot be blank.
-                </div>
-                <div class="register">
-                    <form class="form-horizontal regisText">
-                        <fieldset>
-                            <legend>Register form : </legend>
-                            <div class="form-group">
-                                <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label" for="inputDefault">Username</label>
-                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                    <input type="text" class="form-control" id="inputUsername" placeholder="Username" style="font-size:20px">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPassword" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">Password</label>
-                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                    <input type="password" class="form-control" id="inputPassword" placeholder="Password" style="font-size:20px">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPassword" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">Re-enter Password</label>
-                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                    <input type="password" class="form-control" id="reInputPassword" placeholder="Password"                                                             style="font-size:20px">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputEmail" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">Email</label>
-                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email" style="font-size:20px">
-                                </div>
-                            </div>
-                            <div class="form-group text-center">
-                                <div class= "col-md-12">
-                                    <a class="btn btn-default" href="index.html" style="font-size:20px">Cancel</a>
-                                    <button type="button" class="btn btn-primary" id="submit-btn" style="font-size:20px">Submit</button>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-                <!-- NOTE: Register Success -->
-                <div class="regis-sucess">
-                    <div class="alert alert-dismissable alert-success text-center">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <h2><strong>Success!</strong> Register completed.<br></h2>
-                        <p>This page will be redirect to Main page in 5 second.</p>
-                    </div>
-                </div>
-                <!-- NOTE: /Register Success -->
+         </div>
+      </div>
+      <div class="container" id="regis-page">
+         <script>$("#regis-page").hide()</script>
+         <!-- NOTE: Jumbotron -->
+         <div class="jumbotron contentPopup" id="page-content-pop">
+            <div class="alert alert-dismissable alert-danger" id="userHasBeenPicked">
+               <button type="button" class="close" data-dismiss="alert">×</button>
+               <strong>Oh snap!</strong> This username has been used.
             </div>
-            <!-- NOTE: /Jumbotron -->
-        </div>
-        <script src="jquery-2.1.4.min.js"></script>
-        <script src="bootstrap-material-design\dist\js\ripples.min.js"></script>
-        <script src="bootstrap-material-design\dist\js\material.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                // This command is used to initialize some elements and make them work properly
-                $.material.init();
-            });
-            $(".regis-sucess").hide();
-            $("#blankInput").hide();
-            $("#warning").hide();
-            $("#userHasBeenPicked").hide();
-            var username;
-            var password;
-            var repassword;
-            var email;
-            var hasAccount = false;
-            var usedAccount;
-            var userlist;
-            var passwordlist;
-            var emaillist;
-            function hide() {
-                $(".alert").fadeOut();
-            }
-            //NOTE: Group of resource loader function
-            function onLoadedUserlist(result){
-                userlist = result.split(",");
-            }
-            function onLoadedPasswordlist(result){
-                passwordlist = result.split(",");
-            }
-            function onLoadedEmaillist(result){
-                emaillist = result.split(",");
-            }
-            function register() {
-                $("#blankInput").hide();
-                $("#warning").hide();
-                $("#userHasBeenPicked").hide();
-                username = $("#inputUsername").val();
-                password = $("#inputPassword").val();
-                repassword = $("#reInputPassword").val();
-                email = $("#inputEmail").val();
-                if( password == "" || username == ""){
-                    $("#blankInput").fadeIn();
-                }
-                else if( password !== repassword) {
-                    $("#warning").fadeIn();
-                }
-                /*NOTE: Send to the IoT server service
-                1.for loop to look up all the username /
-                    1.1 check that username has not been pick /
-                2.send information to IoT
-                3.go to top page*/
-                else {
-                    $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",onLoadedUserlist);
-                    $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",onLoadedPasswordlist);
-                    $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-email-list",onLoadedEmaillist);
-                    setTimeout(function (){
-                        if (userlist[0] !== "") {
-                            for (var i = 0 ; i < userlist.length ; i++) { //NOTE: Loop for checking more than one user from server
-                                if ( userlist[i] == username ) {
-                                    $("#userHasBeenPicked").fadeIn();
-                                    hasAccount = true;
-                                    break;
-                                }
-                            }
-                            if(!hasAccount){
-                                userlist.push(username);
-                                var userlistStr = userlist.join(",");
-                                passwordlist.push(password);
-                                var passwordlistStr = passwordlist.join(",");
-                                emaillist.push(email);
-                                var emaillistStr = emaillist.join(",");
-                                $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",{data:userlistStr});
-                                $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",{data:passwordlistStr});
-                                $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-email-list",{data:emaillistStr});
-                                setTimeout(function (){
-                                    $(".regis-sucess").fadeIn();
-                                },500);
-                                setTimeout(function () {
-                                    window.location.replace("index.html");
-                                },5000);
-                            }
-                            hasAccount = false;
-                        }
-                        else {
-                            userlist = username;
-                            passwordlist = password;
-                            emaillist = email;
-                            $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",{data:userlist});
-                            $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",{data:passwordlist});
-                            $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-email-list",{data:emaillist});
-                        }
-                    },1000);
-                }
-            }
-            $(".close").click(hide);
-            $("#submit-btn").click(register);
-        </script>
-    </body>
+            <div class="alert alert-dismissable alert-warning" id="warning">
+               <button type="button" class="close" data-dismiss="alert">×</button>
+               <strong>Warning!</strong> Password is not same.
+            </div>
+            <div class="alert alert-dismissable alert-danger" id="blankInput">
+               <button type="button" class="close" data-dismiss="alert">×</button>
+               <strong>Opps!</strong> Username and Password cannot be blank.
+            </div>
+            <div class="register">
+               <form class="form-horizontal regisText">
+                  <fieldset>
+                     <legend>Register form : </legend>
+                     <div class="form-group">
+                        <label class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label" for="inputDefault">Username</label>
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                           <input type="text" class="form-control" id="inputUsername" placeholder="Username" style="font-size:20px">
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="inputPassword" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">Password</label>
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                           <input type="password" class="form-control" id="inputPassword" placeholder="Password" style="font-size:20px">
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="inputPassword" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">Re-enter Password</label>
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                           <input type="password" class="form-control" id="reInputPassword" placeholder="Password"                                                             style="font-size:20px">
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="inputEmail" class="col-lg-2 col-md-2 col-sm-2 col-xs-2 control-label">Email</label>
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                           <input type="email" class="form-control" id="inputEmail" placeholder="Email" style="font-size:20px">
+                        </div>
+                     </div>
+                     <div class="form-group text-center">
+                        <div class= "col-md-12">
+                           <a class="btn btn-default" href="index.html" style="font-size:20px">Cancel</a>
+                           <button type="button" class="btn btn-primary" id="submit-btn" style="font-size:20px">Submit</button>
+                        </div>
+                     </div>
+                  </fieldset>
+               </form>
+            </div>
+            <!-- NOTE: Register Success -->
+            <div class="regis-sucess">
+               <div class="alert alert-dismissable alert-success text-center">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <h2><strong>Success!</strong> Register completed.<br></h2>
+                  <p>This page will be redirect to Main page in 5 second.</p>
+               </div>
+            </div>
+            <!-- NOTE: /Register Success -->
+         </div>
+         <!-- NOTE: /Jumbotron -->
+      </div>
+      <script src="bootstrap-material-design\dist\js\ripples.min.js"></script>
+      <script src="bootstrap-material-design\dist\js\material.min.js"></script>
+      <script>
+         $(document).ready(function() {
+             // This command is used to initialize some elements and make them work properly
+             $.material.init();
+         });
+         $(".regis-sucess").hide();
+         $("#blankInput").hide();
+         $("#warning").hide();
+         $("#userHasBeenPicked").hide();
+         $("#regis-page").fadeIn();
+         var username;
+         var password;
+         var repassword;
+         var email;
+         var hasAccount = false;
+         var usedAccount;
+         var userlist;
+         var passwordlist;
+         var emaillist;
+         function hide() {
+             $(".alert").fadeOut();
+         }
+         //NOTE: Group of resource loader function
+         function onLoadedUserlist(result){
+             userlist = result.split(",");
+         }
+         function onLoadedPasswordlist(result){
+             passwordlist = result.split(",");
+         }
+         function onLoadedEmaillist(result){
+             emaillist = result.split(",");
+         }
+         function register() {
+             $("#blankInput").hide();
+             $("#warning").hide();
+             $("#userHasBeenPicked").hide();
+             username = $("#inputUsername").val();
+             password = $("#inputPassword").val();
+             repassword = $("#reInputPassword").val();
+             email = $("#inputEmail").val();
+             if( password == "" || username == ""){
+                 $("#blankInput").fadeIn();
+             }
+             else if( password !== repassword) {
+                 $("#warning").fadeIn();
+             }
+             /*NOTE: Send to the IoT server service
+             1.for loop to look up all the username /
+                 1.1 check that username has not been pick /
+             2.send information to IoT
+             3.go to top page*/
+             else {
+                 $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",onLoadedUserlist);
+                 $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",onLoadedPasswordlist);
+                 $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-email-list",onLoadedEmaillist);
+                 setTimeout(function (){
+                     if (userlist[0] !== "") {
+                         for (var i = 0 ; i < userlist.length ; i++) { //NOTE: Loop for checking more than one user from server
+                             if ( userlist[i] == username ) {
+                                 $("#userHasBeenPicked").fadeIn();
+                                 hasAccount = true;
+                                 break;
+                             }
+                         }
+                         if(!hasAccount){
+                             userlist.push(username);
+                             var userlistStr = userlist.join(",");
+                             passwordlist.push(password);
+                             var passwordlistStr = passwordlist.join(",");
+                             emaillist.push(email);
+                             var emaillistStr = emaillist.join(",");
+                             $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",{data:userlistStr});
+                             $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",{data:passwordlistStr});
+                             $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-email-list",{data:emaillistStr});
+                             setTimeout(function (){
+                                 $(".regis-sucess").fadeIn();
+                             },500);
+                             setTimeout(function () {
+                                 window.location.replace("index.html");
+                             },5000);
+                         }
+                         hasAccount = false;
+                     }
+                     else {
+                         userlist = username;
+                         passwordlist = password;
+                         emaillist = email;
+                         $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",{data:userlist});
+                         $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",{data:passwordlist});
+                         $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-email-list",{data:emaillist});
+                     }
+                 },1000);
+             }
+         }
+         $(".close").click(hide);
+         $("#submit-btn").click(register);
+      </script>
+   </body>
 </html>

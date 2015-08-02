@@ -1,323 +1,321 @@
 <!DOCTYPE html>
 <html>
-     <head>
-        <meta charset="utf8">
-        <title>Clothesline Sky Ward</title>
-        <link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="bootstrap-material-design/dist/css/ripples.min.css">
-        <link rel="stylesheet" href="bootstrap-material-design/dist/css/material.min.css">
-        <link rel="stylesheet" href="bootstrap-material-design/dist/css/roboto.min.css">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <!-- NOTE: head-page -->
-        <div class="container ">
-           <div class="jumbotron header">
+   <head>
+      <meta charset="utf8">
+      <title>Clothesline Sky Ward</title>
+      <link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="bootstrap-material-design/dist/css/ripples.min.css">
+      <link rel="stylesheet" href="bootstrap-material-design/dist/css/material.min.css">
+      <link rel="stylesheet" href="bootstrap-material-design/dist/css/roboto.min.css">
+      <link rel="stylesheet" href="style.css">
+   </head>
+   <body>
+      <script src="jquery-2.1.4.min.js"></script>
+      <!-- NOTE: Load Data -->
+      <script>
+         //NOTE: Hide unused page
+         $("#main-page").hide();
+         //NOTE: Server Element Variable
+         var user_list;
+         var pass_list;
+         var mode;
+         var humidity;
+         var rain;
+         var state;
+         //NOTE: Group of resource loader function
+         //NOTE: Load list of id
+         function onLoadedUserList(result){
+             user_list = result.split(",")
+         }
+         //NOTE: Load password list
+         function onLoadedPasswordList(result){
+             pass_list = result.split(",")
+         }
+         //NOTE: Load data
+         function onLoadedData(result){
+             var result_list = result.split("_")
+             humidity = result_list[0]
+             rain = result_list[1]
+             mode = result_list[2]
+             state = result_list[3]
+         }
+         
+         //NOTE: Load every reaource
+         function loadResource(){
+             $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",onLoadedUserList);
+             $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",onLoadedPasswordList);
+             $.get("http://exceed.cupco.de/iot/SeatBelt/board",onLoadedData);
+         }
+         loadResource();
+      </script>
+      <!-- NOTE: head-page -->
+      <div class="container ">
+         <div class="jumbotron header">
             <div class="row">
-                <div class="col-md-12">
-                    <h1>Clothesline Sky Ward</h1>
-                </div>
-            </div>
-            </div>
-        </div>
-        <!-- NOTE: front-page -->
-        <div class="container" id="front-page">
-           <div class="jumbotron">
-               <!-- NOTE: Login failed -->
-               <div class="alert alert-dismissable alert-danger">
-                   <button type="button" class="close" data-dismiss="alert">×</button>
-                   <strong>Invalid</strong> username or password.
+               <div class="col-md-12">
+                  <h1>Clothesline Sky Ward</h1>
                </div>
-               <!-- NOTE: /Login failed -->
+            </div>
+         </div>
+      </div>
+      <!-- NOTE: front-page -->
+      <div class="container" id="front-page">
+         <script>$("#front-page").hide()</script>
+         <div class="jumbotron">
+            <!-- NOTE: Login failed -->
+            <div class="alert alert-dismissable alert-danger">
+               <button type="button" class="close" data-dismiss="alert">×</button>
+               <strong>Invalid</strong> username or password.
+            </div>
+            <!-- NOTE: /Login failed -->
             <div class="row rowID">
                <div class="col-md-2 col-sm-2 IDtext text-center">
-                   <h4>ID</h4>
+                  <h4>ID</h4>
                </div>
-                <div class="col-md-8 col-sm-8 inputText">
-                    <!-- NOTE: user-input -->
-                    <input type="text" class="form-control" id="user-input" placeholder="input your ID" style="font-size:20px">
-                </div>
+               <div class="col-md-8 col-sm-8 inputText">
+                  <!-- NOTE: user-input -->
+                  <input type="text" class="form-control" id="user-input" placeholder="input your ID" style="font-size:20px">
+               </div>
             </div>
             <div class="row rowID">
-                <div class="col-md-2 col-sm-2 IDtext text-center">
-                    <h4>Password</h4>
-                </div>
-                <div class="col-md-8 col-sm-8 inputText">
-                    <!-- NOTE: pass-input -->
-                    <input type="password" class="form-control" id="pass-input" placeholder="input your password" style="font-size:20px">
-                </div>
+               <div class="col-md-2 col-sm-2 IDtext text-center">
+                  <h4>Password</h4>
+               </div>
+               <div class="col-md-8 col-sm-8 inputText">
+                  <!-- NOTE: pass-input -->
+                  <input type="password" class="form-control" id="pass-input" placeholder="input your password" style="font-size:20px">
+               </div>
             </div>
             <div class="row text-center">
-                
-                    <!-- NOTE: register-btn -->
-                    <a type="button" class="btn btn-primary" id="register-btn" style="font-size:20px" href="regis.html">Register</a>
-                
-                    <!-- NOTE: login-btn -->
-                    <button type="button" class="btn btn-success btn-raised" id="login-btn" style="font-size:20px">Login</button>
-                
+               <!-- NOTE: register-btn -->
+               <a type="button" class="btn btn-primary" id="register-btn" style="font-size:20px" href="regis.html">Register</a>
+               <!-- NOTE: login-btn -->
+               <button type="button" class="btn btn-success btn-raised" id="login-btn" style="font-size:20px">Login</button>
             </div>
+         </div>
+      </div>
+      <!-- NOTE: main-page -->
+      <div class="container" id="main-page">
+         <script>$("#main-page").hide()</script>
+         <div class="row">
+            <!-- NOTE: humidity label -->
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+               <div class="jumbotron">
+                  <div class="carousel slide" data-ride="carousel">
+                     <div class="carousel-inner">
+                        <div class="item active">
+                           <!-- TODO: Find new picture -->
+                           <img src="images/humidity2.png" alt="" class="img-responsive weather-img" id="humidity-img">
+                           <div class="text-center weather-text" id="humidity">
+                              Humidity: 0
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-        <!-- NOTE: main-page -->
-        <div class="container" id="main-page">
-            <div class="row">
-               <!-- NOTE: humidity label -->
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                   <div class="jumbotron">
-                    <div class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="item active">
-                               <!-- TODO: Find new picture -->
-                                <img src="images/humidity2.png" alt="" class="img-responsive weather-img" id="humidity-img">
-                               <div class="text-center weather-text" id="humidity">
-                                       Humidity: 0
-                               </div>
-                            </div>
-                          </div>
-                    </div>
-                    </div>
-                </div>
-                <!-- NOTE: rain status -->
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                   <div class="jumbotron">
-                    <div class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="item active">
-                               <!-- TODO: Find new picture -->
-                                <img src="images/rain.png" alt="" class="img-responsive weather-img" id="rain-img">
-                               <div class="text-center weather-text" id="rain">
-                                       Rain
-                               </div>
-                            </div>
-                          </div>
-                    </div>
-                </div>
-                </div>
+            <!-- NOTE: rain status -->
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+               <div class="jumbotron">
+                  <div class="carousel slide" data-ride="carousel">
+                     <div class="carousel-inner">
+                        <div class="item active">
+                           <!-- TODO: Find new picture -->
+                           <img src="images/rain.png" alt="" class="img-responsive weather-img" id="rain-img">
+                           <div class="text-center weather-text" id="rain">
+                              Rain
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-            
-            <div class="row">
-               <!-- NOTE: humidity label -->
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                   <div class="jumbotron">
-                    <div class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="item active">
-                               <!-- TODO: Find new picture -->
-                                <img src="images/humidity2.png" alt="" class="img-responsive weather-img" id="humidity-img">
-                               <div class="text-center weather-text" id="humidity">
-                                       Humidity: 0
-                               </div>
-                            </div>
-                          </div>
-                    </div>
-                    </div>
-                </div>
-                <!-- NOTE: rain status -->
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                   <div class="jumbotron">
-                    <div class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <div class="item active">
-                               <!-- TODO: Find new picture -->
-                                <img src="images/rain.png" alt="" class="img-responsive weather-img" id="rain-img">
-                               <div class="text-center weather-text" id="rain">
-                                       Rain
-                               </div>
-                            </div>
-                          </div>
-                    </div>
-                </div>
-                </div>
+         </div>
+         <div class="row">
+            <!-- NOTE: humidity label -->
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+               <div class="jumbotron">
+                  <div class="carousel slide" data-ride="carousel">
+                     <div class="carousel-inner">
+                        <div class="item active">
+                           <!-- TODO: Find new picture -->
+                           <img src="images/humidity2.png" alt="" class="img-responsive weather-img" id="humidity-img">
+                           <div class="text-center weather-text" id="humidity">
+                              Humidity: 0
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-            <div class="row">
-                <!-- NOTE: galileo status -->
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                    <div class="well well-md" id="state">Outdoor</div>
-                </div>
+            <!-- NOTE: rain status -->
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+               <div class="jumbotron">
+                  <div class="carousel slide" data-ride="carousel">
+                     <div class="carousel-inner">
+                        <div class="item active">
+                           <!-- TODO: Find new picture -->
+                           <img src="images/rain.png" alt="" class="img-responsive weather-img" id="rain-img">
+                           <div class="text-center weather-text" id="rain">
+                              Rain
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-            <div class="row">
-                <!-- NOTE: state-btn -->
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <button href="javascript:void(0)" class="btn btn-success" id="state-btn" style="font-size:30px">Pull Back</button>
-                </div>
-                <!-- NOTE: auto-btn -->
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <a href="javascript:void(0)" class="btn btn-warning disabled" id="auto-btn" style="font-size:30px">Auto</a>
-                </div>
+         </div>
+         <div class="row">
+            <!-- NOTE: galileo status -->
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+               <div class="well well-md" id="state">Outdoor</div>
             </div>
-            <div class="row">
-                <!-- NOTE: logout-btn -->
-                <div class="col-md-12">
-                    <button href="javascript:void(0)" class="btn btn-danger" id="logout-btn" style="font-size:20px">Logout</button>
-                </div>
+         </div>
+         <div class="row">
+            <!-- NOTE: state-btn -->
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+               <button href="javascript:void(0)" class="btn btn-success" id="state-btn" style="font-size:30px">Pull Back</button>
             </div>
-        </div>
-        <script src="jquery-2.1.4.min.js"></script>
-<script>
-    //NOTE: Hide unused page
-    $("#main-page").hide();
-    //NOTE: Server Element Variable
-    var user_list;
-    var pass_list;
-    var mode;
-    var humidity;
-    var rain;
-    var state;
-    //NOTE: Group of resource loader function
-    //NOTE: Load list of id
-    function onLoadedUserList(result){
-        user_list = result.split(",")
-    }
-    //NOTE: Load password list
-    function onLoadedPasswordList(result){
-        pass_list = result.split(",")
-    }
-    //NOTE: Load data
-    function onLoadedData(result){
-        var result_list = result.split("_")
-        humidity = result_list[0]
-        rain = result_list[1]
-        mode = result_list[2]
-        state = result_list[3]
-    }
-    
-    //NOTE: Load every reaource
-    function loadResource(){
-        $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",onLoadedUserList);
-        $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",onLoadedPasswordList);
-        $.get("http://exceed.cupco.de/iot/SeatBelt/board",onLoadedData);
-    }
-    loadResource();
-</script>
-<!-- NOTE: Jumbotron -->
-
-<script src="jquery-2.1.4.min.js"></script>
-<script src="bootstrap-material-design\dist\js\ripples.min.js"></script>
-<script src="bootstrap-material-design\dist\js\material.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // This command is used to initialize some elements and make them work properly
-        $.material.init();
-    });
-</script>
-<script>
-    $(".alert").hide();
-    //NOTE: Page Variable
-    var front_page = $("#front-page")
-    var main_page = $("#main-page")
-    //NOTE: Local Element Variable
-    var user;
-    var pass;
-    var num_current;
-    var interval = setInterval(refresh,1000);
-    //NOTE: Boolean Variable
-    var isLogin = false;
-    //NOTE: Boolean Function
-    //NOTE: Check ID and pass
-    function checkAccount(){
-        user = $("#user-input").val()
-        pass = $("#pass-input").val()
-        for (var i =0;i<user_list.length;i++) {
-            if (user===user_list[i]&&pass===pass_list[i]) {
-                num_current = i;
-                return true;
+            <!-- NOTE: auto-btn -->
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+               <a href="javascript:void(0)" class="btn btn-warning disabled" id="auto-btn" style="font-size:30px">Auto</a>
+            </div>
+         </div>
+         <div class="row">
+            <!-- NOTE: logout-btn -->
+            <div class="col-md-12">
+               <button href="javascript:void(0)" class="btn btn-danger" id="logout-btn" style="font-size:20px">Logout</button>
+            </div>
+         </div>
+      </div>
+      <!-- NOTE: Jumbotron -->
+      <script src="bootstrap-material-design\dist\js\ripples.min.js"></script>
+      <script src="bootstrap-material-design\dist\js\material.min.js"></script>
+      <script>
+         $(document).ready(function() {
+             // This command is used to initialize some elements and make them work properly
+             $.material.init();
+         });
+      </script>
+      <script>
+         $(".alert").hide();
+         $("#front-page").fadeIn()
+         //NOTE: Page Variable
+         var front_page = $("#front-page")
+         var main_page = $("#main-page")
+         //NOTE: Local Element Variable
+         var user;
+         var pass;
+         var num_current;
+         var interval = setInterval(refresh,1000);
+         //NOTE: Boolean Variable
+         var isLogin = false;
+         //NOTE: Boolean Function
+         //NOTE: Check ID and pass
+         function checkAccount(){
+             user = $("#user-input").val()
+             pass = $("#pass-input").val()
+             for (var i =0;i<user_list.length;i++) {
+                 if (user===user_list[i]&&pass===pass_list[i]) {
+                     num_current = i;
+                     return true;
+                 }
+             }
+             num_current = -1;
+             return false
+         }
+         //NOTE: Switching function
+         //NOTE: Switch to Main Page
+         function goToMainPage(){
+             $(".alert").hide();
+             if (checkAccount()) {
+                 front_page.fadeOut()
+                 main_page.fadeIn()
+                 isLogin = true;
+                 $("#user-input").val('')
+                 $("#pass-input").val('')
             }
-        }
-        num_current = -1;
-        return false
-    }
-    //NOTE: Switching function
-    //NOTE: Switch to Main Page
-    function goToMainPage(){
-        $(".alert").hide();
-        if (checkAccount()) {
-            front_page.fadeOut()
-            main_page.fadeIn()
-            isLogin = true;
-            $("#user-input").val('')
-            $("#pass-input").val('')
-       }
-       else{
-            $(".alert").fadeIn();
-        }
-    }
-    //NOTE: Switch to Front Page
-    function goToFrontPage(){
-        isLogin = false
-        clearInterval(interval)
-        main_page.fadeOut();
-        front_page.fadeIn();
-    }
-    //NOTE: refresh to update state
-    function refresh(){
-        loadResource();
-        if (isLogin) {
-            updateGUI();
-        }
-    }
-    //NOTE: Action Function
-    //NOTE: Update GUI
-        function updateGUI(){
-        $("#state").text(state);
-        if (rain==1) {
-            $("#rain").text("Rainning")
-            $("#rain-img").attr("src","images/rain.png")
-        }
-        else {  
-            $("#rain").text("Dry")
-            $("#rain-img").attr("src","images/sun.png")
-        }
-        $("#humidity").text("Humidity : "+humidity)
-        if (humidity>50) {
-            $("#humidity-img").attr("src","images/humidity2.png")
-        }
-        else {
-            $("#humidity-img").attr("src","images/humidity.png")
-        }
-        if (state==1){
-            $("#state").text("Outdoor");
-            $("#state-btn").text("PULL BACK");
-        }
-        else {
-            $("#state").text("Indoor");
-            $("#state-btn").text("EXTEND")
-        }
-        if (mode==0) {
-            $("#auto-btn").removeClass("btn-warning disabled")
-            $("#auto-btn").addClass("btn-info")
-            $("#auto-btn").addClass("btn-raised")
-        }
-        else {
-            $("#auto-btn").toggleClass("btn btn-info btn-raised")
-            $("#auto-btn").addClass("btn btn-warning disabled")
-        }
-    }
-    //NOTE: Change button color and text when change state and post data to server
-    function postState(){
-        if (state==1) {
-            state=0
-        }
-        else {
-            state=1
-        }
-        mode = 0;
-        var dat = mode+"_"+state
-        $.post("http://exceed.cupco.de/iot/SeatBelt/board",{data:dat})
-    }
-    function hide() {
-        $(".alert").hide();
-    }
-    function changeToAuto(){
-        mode = 1;
-        var dat = mode+"_"+state
-        $.post("http://exceed.cupco.de/iot/SeatBelt/board",{data:dat})
-    }
-    //Button ActionListener
-    $(".close").click(hide);
-    $("#login-btn").click(goToMainPage)
-    $("#logout-btn").click(goToFrontPage)
-    $("#auto-btn").click(changeToAuto);
-    $("#state-btn").click(postState);
-</script>
-    </body>
+            else{
+                 $(".alert").fadeIn();
+             }
+         }
+         //NOTE: Switch to Front Page
+         function goToFrontPage(){
+             isLogin = false
+             clearInterval(interval)
+             main_page.fadeOut();
+             front_page.fadeIn();
+         }
+         //NOTE: refresh to update state
+         function refresh(){
+             loadResource();
+             if (isLogin) {
+                 updateGUI();
+             }
+         }
+         //NOTE: Action Function
+         //NOTE: Update GUI
+             function updateGUI(){
+             $("#state").text(state);
+             if (rain==1) {
+                 $("#rain").text("Rainning")
+                 $("#rain-img").attr("src","images/rain.png")
+             }
+             else {  
+                 $("#rain").text("Dry")
+                 $("#rain-img").attr("src","images/sun.png")
+             }
+             $("#humidity").text("Humidity : "+humidity)
+             if (humidity>50) {
+                 $("#humidity-img").attr("src","images/humidity2.png")
+             }
+             else {
+                 $("#humidity-img").attr("src","images/humidity.png")
+             }
+             if (state==1){
+                 $("#state").text("Outdoor");
+                 $("#state-btn").text("PULL BACK");
+             }
+             else {
+                 $("#state").text("Indoor");
+                 $("#state-btn").text("EXTEND")
+             }
+             if (mode==0) {
+                 $("#auto-btn").removeClass("btn-warning disabled")
+                 $("#auto-btn").addClass("btn-info")
+                 $("#auto-btn").addClass("btn-raised")
+             }
+             else {
+                 $("#auto-btn").toggleClass("btn btn-info btn-raised")
+                 $("#auto-btn").addClass("btn btn-warning disabled")
+             }
+         }
+         //NOTE: Change button color and text when change state and post data to server
+         function postState(){
+             if (state==1) {
+                 state=0
+             }
+             else {
+                 state=1
+             }
+             mode = 0;
+             var dat = mode+"_"+state
+             $.post("http://exceed.cupco.de/iot/SeatBelt/board",{data:dat})
+         }
+         function hide() {
+             $(".alert").hide();
+         }
+         function changeToAuto(){
+             mode = 1;
+             var dat = mode+"_"+state
+             $.post("http://exceed.cupco.de/iot/SeatBelt/board",{data:dat})
+         }
+         //Button ActionListener
+         $(".close").click(hide);
+         $("#login-btn").click(goToMainPage)
+         $("#logout-btn").click(goToFrontPage)
+         $("#auto-btn").click(changeToAuto);
+         $("#state-btn").click(postState);
+      </script>
+   </body>
 </html>
