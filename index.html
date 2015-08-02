@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <head>
+     <head>
         <meta charset="utf8">
         <title>Clothes line Sky Ward</title>
-        <link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.min.css">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="bootstrap-material-design/dist/css/ripples.min.css">
         <link rel="stylesheet" href="bootstrap-material-design/dist/css/material.min.css">
+        <link rel="stylesheet" href="bootstrap-material-design/dist/css/roboto.min.css">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -13,7 +15,7 @@
            <div class="jumbotron header">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Cloth Line Sky Ward</h1>
+                    <h1>Clothes line Sky Ward</h1>
                 </div>
             </div>
             </div>
@@ -96,14 +98,18 @@
             </div>
             <div class="row">
                 <!-- NOTE: state-btn -->
-                <div class="col-md-12">
-                    <button class="btn btn-success btn-lg" id="state-btn">Pull Back</button>
+                <div class="col-md-6">
+                    <button href="javascript:void(0)" class="btn btn-success" id="state-btn" style="font-size:30px">Pull Back</button>
+                </div>
+                <!-- NOTE: auto-btn -->
+                <div class="col-md-6">
+                    <a href="javascript:void(0)" class="btn btn-warning disabled" id="auto-btn" style="font-size:30px">Auto</a>
                 </div>
             </div>
             <div class="row">
                 <!-- NOTE: logout-btn -->
                 <div class="col-md-12">
-                    <button type="button" class="btn btn-danger btn-lg" id="logout-btn">Logout</button>
+                    <button href="javascript:void(0)" class="btn btn-danger" id="logout-btn" style="font-size:20px">Logout</button>
                 </div>
             </div>
         </div>
