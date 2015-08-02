@@ -50,6 +50,7 @@
              $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",onLoadedUserList);
              $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",onLoadedPasswordList);
              $.get("http://exceed.cupco.de/iot/SeatBelt/board",onLoadedData);
+             console.log(mode)
          }
          loadResource();
       </script>
@@ -355,15 +356,16 @@
              }
              mode = "M";
              var dat = mode+"_"+state
-             $.post("http://exceed.cupco.de/iot/SeatBelt/board",{data:dat})
+             $.post("http://exceed.cupco.de/iot/SeatBelt/web",{data:dat},console.log('a'))
          }
          function hide() {
              $(".alert").hide();
          }
          function changeToAuto(){
              mode = "A";
-             var dat = mode+"_"+state
-             $.post("http://exceed.cupco.de/iot/SeatBelt/board",{data:dat})
+             var dat = mode
+             $.post("http://exceed.cupco.de/iot/SeatBelt/web",{data:dat},             console.log(mode)
+)
          }
          function enterToLogin(){
              goToMainPage();
