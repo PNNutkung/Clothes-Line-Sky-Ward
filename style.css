@@ -20,6 +20,7 @@ h1 {
     text-align: center;
     font-weight: bold;
     font-size: 60px;
+    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
     animation: color-change 15s infinite;
 }
 
@@ -86,7 +87,35 @@ h4 {
 
 #state-btn {
     overflow: auto;
-    width:200px;
-    display:inline;
+    width: 200px;
+    display: inline;
     left: 300px;
+}
+
+.regisText {
+    font-size: 20px;
+}
+
+.regisText legend {
+    font-size: 25px;
+}
+
+#inputUsername {
+    position: relative;
+    bottom: -7px;
+}
+
+#inputPassword {
+    position: relative;
+    bottom: -7px;
+}
+
+#reInputPassword {
+    position: relative;
+    bottom: -20px;
+}
+
+#inputEmail {
+    position: relative;
+    bottom: -7px;
 }
