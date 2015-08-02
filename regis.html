@@ -88,6 +88,9 @@
             var userlist;
             var passwordlist;
             var emaillist;
+            function hide() {
+                $(".alert").fadeOut();
+            }
             //NOTE: Group of resource loader function
             function onLoadedUserlist(result){
                 userlist = result.split(",");
@@ -99,9 +102,7 @@
                 emaillist = result.split(",");
             }
             function register() {
-                $("#warning").hide();
-                $("#userHasBeenPicked").hide();
-                $("#blankInput").hide();
+                hide();
                 username = $("#inputUsername").val();
                 password = $("#inputPassword").val();
                 repassword = $("#reInputPassword").val();
@@ -121,6 +122,7 @@
                 else {
                     $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",onLoadedUserlist);
                     $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",onLoadedPasswordlist);
+                    $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-email-list",onLoadedEmaillist);
                     setTimeout(function (){console.log(userlist)},500);
                     setTimeout(function (){
                         console.log(userlist.length);
@@ -137,9 +139,12 @@
                                 var userlistStr = userlist.join(",");
                                 passwordlist.push(password);
                                 var passwordlistStr = userlist.join(",");
+                                emaillist.push(email);
+                                var emaillistStr = userlist.join(",");
                                 console.log(userlist);
                                 $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",{data:userlistStr});
                                 $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",{data:passwordlistStr});
+                                $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-email-list",{data:emaillistStr});
                             }
                             hasAccount = false;
                         }
@@ -147,13 +152,15 @@
                             console.log('inner else');
                             userlist = username;
                             passwordlist = password;
+                            emaillist = email;
                             $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",{data:userlist});
                             $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",{data:passwordlist});
-                            $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-num",{data:num_current});
+                            $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-email-list",{data:emaillist});
                         }
                     },1000);
                 }
             }
+            $(".close").click(hide);
             $("#submit-btn").click(register);
         </script>
     </body>
