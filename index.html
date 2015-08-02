@@ -296,6 +296,7 @@
          //NOTE: refresh to update state
          function refresh(){
              loadResource();
+                          console.log(state)
              if (isLogin) {
                  updateGUI();
              }
@@ -304,7 +305,7 @@
          //NOTE: Update GUI
              function updateGUI(){
              $("#state").text(state);
-             if (rain==1) {
+             if (rain==0) {
                  $("#rain").text("Raining")
                  $("#rain-img").attr("src","images/sun6.png")
              }
