@@ -4,77 +4,88 @@
         <meta charset="utf8">
         <title>Cloth Line Sky Ward</title>
         <link rel="stylesheet" href="bootstrap-3.3.5-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap-material-design/dist/css/material.min.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <!-- NOTE: head-page -->
         <div class="container">
+           <div class="jumbotron">
             <div class="row">
                 <div class="col-md-12">
                     <h1>Cloth Line Sky Ward</h1>
                 </div>
             </div>
+            </div>
         </div>
         <!-- NOTE: front-page -->
         <div class="container" id="front-page">
-            <div class="row">
-               <div class="col-md-2">
-                   <h4>ID : </h4>
+           <div class="jumbotron">
+            <div class="row rowID">
+               <div class="col-md-2 IDtext">
+                   <h4>ID</h4>
                </div>
-                <div class="col-md-3">
+                <div class="col-md-8 inputText">
                     <!-- NOTE: user-input -->
-                    <input type="text" class="form-control" id="user-input" placeholder="input your ID">
+                    <input type="text" class="form-control" id="user-input" placeholder="input your ID" style="font-size:20px">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <h4>Password :</h4>
+            <div class="row rowID">
+                <div class="col-md-2 IDtext">
+                    <h4>Password</h4>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-8 inputText">
                     <!-- NOTE: pass-input -->
-                    <input type="password" class="form-control" id="pass-input" placeholder="input your password">
+                    <input type="password" class="form-control" id="pass-input" placeholder="input your password" style="font-size:20px">
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-2">
+            <div class="row text-center">
+                <div class="col-md-4">
                     <!-- NOTE: register-btn -->
-                    <button type="button" class="btn btn-warning btn-lg" id="register-btn">Register</button>
+                    <button type="button" class="btn btn-primary" id="register-btn" style="font-size:20px">Register</button>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <!-- NOTE: login-btn -->
-                    <button type="button" class="btn btn-success btn-lg" id="login-btn">Login</button>
+                    <button type="button" class="btn btn-success btn-raised" id="login-btn" style="font-size:20px">Login</button>
                 </div>
+            </div>
             </div>
         </div>
         <!-- NOTE: main-page -->
         <div class="container" id="main-page">
             <div class="row">
                <!-- NOTE: humidity label -->
+               
                 <div class="col-md-6">
+                   <div class="jumbotron">
                     <div class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="item active">
                                <!-- TODO: Find new picture -->
-                                <img src="images/FPODV45HUEENATH.LARGE.jpg" alt="" class="img-responsive" id="humidity-img">
-                               <div class="carousel-caption" id="humidity">
+                                <img src="images/humidity2.png" alt="" class="img-responsive" id="humidity-img">
+                               <div class="text-center" id="humidity">
                                        Humidity: 0
                                </div>
                             </div>
                           </div>
                     </div> 
                 </div>
+                </div>
                 <!-- NOTE: rain status -->
                 <div class="col-md-6">
+                   <div class="jumbotron">
                     <div class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="item active">
                                <!-- TODO: Find new picture -->
-                                <img src="images/FPODV45HUEENATH.LARGE.jpg" alt="" class="img-responsive" id="rain-img">
-                               <div class="carousel-caption" id="rain">
-                                       Dry
+                                <img src="images/rain.png" alt="" class="img-responsive" id="rain-img">
+                               <div class="text-center" id="rain">
+                                       Rain
                                </div>
                             </div>
                           </div>
                     </div>
+                </div>
                 </div>
             </div>
             <div class="row">
@@ -97,6 +108,21 @@
             </div>
         </div>
         <script src="jquery-2.1.4.min.js"></script>
+        
+        <!-- NOTE: Jumbotron -->
+        
+        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+        <script src="js/ripples.min.js"></script>
+        <script src="js/material.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                // This command is used to initialize some elements and make them work properly
+                $.material.init();
+            });
+        </script>
+        
         <script>
             //NOTE: Page Variable
             var front_page = $("#front-page")

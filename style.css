@@ -1,0 +1,71 @@
+.container {
+    font-family:  monospace;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 60px;
+    animation: color-change 10s infinite;
+}
+
+@keyframes color-change {
+    10% { color: royalblue; }
+    20% { color: indianred; }
+    30% { color: seagreen; }
+    40% { color: darksalmon; }
+    50% { color: chocolate; }
+    60% { color: darkkhaki; }
+    70% { color: darkslategray; }
+    80% { color: crimson; }
+    90% { color: royalblue; }
+    100% { color: darkslateblue; }
+}
+
+h4 {
+    font-weight: bold;
+}
+
+.IDtext h4 {
+    color: indianred;
+    font-size: 20px;
+    padding-left: 50px;
+}
+
+.rowID {
+    padding-top: 30px;
+    padding-bottom: 40px;
+}
+
+.inputText {
+    padding-top: 6px;
+}
+
+#humidity-img {
+    width: 300px;
+    height: 300px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+#humidity {
+    font-size: 30px;
+}
+
+#rain-img {
+    width: 300px;
+    height: 300px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#rain {
+    font-size: 30px;
+}
