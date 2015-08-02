@@ -1,3 +1,17 @@
+body {
+    background-image: url(images/sky.jpg);
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
+}
+
+.header {
+    background-image: url(images/sky2.jpg);
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-position:center;
+}
+
 .container {
     font-family:  monospace;
 }
@@ -6,20 +20,20 @@ h1 {
     text-align: center;
     font-weight: bold;
     font-size: 60px;
-    animation: color-change 10s infinite;
+    animation: color-change 15s infinite;
 }
 
 @keyframes color-change {
-    10% { color: royalblue; }
-    20% { color: indianred; }
-    30% { color: seagreen; }
+    10% { color: darkseagreen; }
+    20% { color: antiquewhite; }
+    30% { color: plum; }
     40% { color: darksalmon; }
-    50% { color: chocolate; }
-    60% { color: darkkhaki; }
+    50% { color: seagreen; }
+    60% { color: thistle; }
     70% { color: darkslategray; }
-    80% { color: crimson; }
-    90% { color: royalblue; }
-    100% { color: darkslateblue; }
+    80% { color: peachpuff; }
+    90% { color: darkgreen; }
+    100% { color: olive; }
 }
 
 h4 {
