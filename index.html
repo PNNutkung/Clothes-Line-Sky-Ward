@@ -147,7 +147,7 @@
                      <div class="carousel-inner">
                         <div class="item active">
                            <!-- TODO: Find new picture -->
-                           <img src="images/humidity2.png" alt="" class="img-responsive weather-img" id="li-img">
+                           <img src="images/sun1.png" alt="" class="img-responsive weather-img" id="li-img">
                            <div class="text-center weather-text" id="li">
                               Humidity: 0
                            </div>
@@ -331,11 +331,17 @@
              }
              $("#degree").text(temp)
              $("#li").text("Light Intensity: "+light)
-             if (light>400) {
-                 $("#li-img").attr("src","images/humidity2.png")
+             if (light>=500) {
+                 $("#li-img").attr("src","images/sun1.png")
+             }
+             else if (light<500 && light>=300) {
+                 $("#li-img").attr("src","images/sun2.png")
+             }
+             else if (light>50 && light<300) {
+                 $("#li-img").attr("src","images/sun3.png")
              }
              else {
-                 $("#li-img").attr("src","images/humidity.png")
+                 $("#li-img").attr("src","images/sun4.png")
              }
              if (state==1){
                  $("#state").text("Outdoor");
