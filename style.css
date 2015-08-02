@@ -57,10 +57,7 @@ h4 {
 }
 
 .weather-img {
-    width: 300px;
-    height: 200px;
-    padding-bottom: 20px;
-    padding-top: 20px;
+    
     display: block;
     margin-left: auto;
     margin-right: auto;
