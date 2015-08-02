@@ -57,7 +57,7 @@
         <div class="container" id="main-page">
             <div class="row">
                <!-- NOTE: humidity label -->
-               
+
                 <div class="col-md-6">
                    <div class="jumbotron">
                     <div class="carousel slide" data-ride="carousel">
@@ -70,7 +70,7 @@
                                </div>
                             </div>
                           </div>
-                    </div> 
+                    </div>
                 </div>
                 </div>
                 <!-- NOTE: rain status -->
@@ -129,7 +129,7 @@
     var isRain_list;
     var state_list;
     var handle_list;
-    
+
     //NOTE: Group of resource loader function
     //NOTE: Load list of id
     function onLoadedUserList(result){
@@ -138,7 +138,7 @@
     //NOTE: Load password list
     function onLoadedPasswordList(result){
         pass_list = result.split(",")
-    }   
+    }
     //NOTE: Load Humidity value list
     function onLoadedHumidityList(result){
         humidity = result.split(",")
@@ -177,8 +177,8 @@
             }
         }
     }
-    
-        
+
+
     //NOTE: Load every reaource
     function loadResource(){
         $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",onLoadedUserList);
@@ -190,9 +190,9 @@
     }
     loadResource();
 </script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-<script src="js/ripples.min.js"></script>
-<script src="js/material.min.js"></script>
+<script src="jquery-2.1.4.min.js"></script>
+<script src="bootstrap-material-design\dist\js\ripples.min.js"></script>
+<script src="bootstrap-material-design\dist\js\material.min.js"></script>
 <script>
     $(document).ready(function() {
         // This command is used to initialize some elements and make them work properly
@@ -203,15 +203,15 @@
     //NOTE: Page Variable
     var front_page = $("#front-page")
     var main_page = $("#main-page")
-    
+
     //NOTE: Local Element Variable
     var user;
     var pass;
     var num_current;
-    
+
     //NOTE: Boolean Variable
     var isLogin = false;
-    
+
     //NOTE: Boolean Function
     //NOTE: Check ID and pass
     function checkAccount(){
@@ -226,7 +226,7 @@
         num_current = -1;
         return false
     }
-    
+
     //NOTE: Switching function
     //NOTE: Switch to Main Page
     function goToMainPage(){
@@ -245,7 +245,7 @@
         main_page.fadeOut();
         front_page.fadeIn();
     }
-    
+
     //NOTE: refresh to update state
     function refresh(){
         loadResource();
@@ -253,7 +253,7 @@
             updateGUI();
         }
     }
-    
+
     //NOTE: Action Function
     //NOTE: Update GUI
     function updateGUI(){
@@ -286,11 +286,11 @@
         $.post("http://exceed.cupco.de/iot/SeatBelt/clws-state-list",{data:state_list.join(",")});
         $.post("http://exceed.cupco.de/iot/SeatBelt/clws-handle-list",{data:handle_list.join(",")});
     }
-    
+
     //Button ActionListener
     $("#login-btn").click(goToMainPage)
     $("#logout-btn").click(goToFrontPage)
-    
+
 </script>
     </body>
 </html>
