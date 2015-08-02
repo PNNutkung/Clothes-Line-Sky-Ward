@@ -315,6 +315,12 @@
              }
              $("#degree").text(temp+" Celcius")
              $("#li").text("Light Intensity: "+light)
+             if (temp<25) {
+                 $("#temperature-img").attr("src","images/temperature2.png")
+             }
+             else {  
+                 $("#temperature-img").attr("src","images/temperature.png")
+             }
              if (light>=600) {
                  $("#li-img").attr("src","images/sun1.png")
              }
