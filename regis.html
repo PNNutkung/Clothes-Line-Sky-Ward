@@ -7,15 +7,21 @@
         <link rel="stylesheet" href="bootstrap-material-design/dist/css/ripples.min.css">
         <link rel="stylesheet" href="bootstrap-material-design/dist/css/material.min.css">
         <link rel="stylesheet" href="bootstrap-material-design/dist/css/roboto.min.css">
+        <link rel="stylesheet" href="style.css">
 
     </head>
     <body>
         <div class="container">
-            <!-- NOTE: Jumbotron -->
-            <div class="jumbotron" id="page-content-pop">
+            <div class="jumbotron header">
                 <div class="text-center">
                     <h1>Clothes line Sky Ward</h1>
                 </div>
+            </div>
+        </div>
+        <div class="container">
+            <!-- NOTE: Jumbotron -->
+            <div class="jumbotron" id="page-content-pop">
+                
                 <div class="alert alert-dismissable alert-danger" id="userHasBeenPicked">
                     <button type="button" class="close" data-dismiss="alert">×</button>
                     <strong>Oh snap!</strong> This username has been used.
@@ -58,7 +64,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-lg-10 col-lg-offset-2 col-md-10 col-md-offset-2 col-sm-10 col-sm-offset-2 col-xs-10 col-xs-offset-2">
-                                    <a class="btn btn-default">Cancel</a>
+                                    <a class="btn btn-default" href="index.html">Cancel</a>
                                     <button type="button" class="btn btn-primary" id="submit-btn">Submit</button>
                                 </div>
                             </div>
