@@ -12,9 +12,21 @@
     <body>
         <div class="container">
             <!-- NOTE: Jumbotron -->
-            <div class="jumbotron">
+            <div class="jumbotron" id="page-content-pop">
                 <div class="text-center">
                     <h1>Clothes line Sky Ward</h1>
+                </div>
+                <div class="alert alert-dismissable alert-danger" id="userHasBeenPicked">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Oh snap!</strong> This username has been used.
+                </div>
+                <div class="alert alert-dismissable alert-warning" id="warning">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Warning!</strong> Password is not same.
+                </div>
+                <div class="alert alert-dismissable alert-danger" id="blankInput">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Opps!</strong> Username and Password cannot be blank.
                 </div>
                 <div class="register">
                     <form class="form-horizontal">
@@ -64,22 +76,83 @@
                 // This command is used to initialize some elements and make them work properly
                 $.material.init();
             });
-
+            $("#blankInput").hide();
+            $("#warning").hide();
+            $("#userHasBeenPicked").hide();
             var username;
             var password;
             var repassword;
             var email;
+            var hasAccount = false;
+            var usedAccount;
+            var userlist;
+            var passwordlist;
+            var emaillist;
+            //NOTE: Group of resource loader function
+            function onLoadedUserlist(result){
+                userlist = result.split(",");
+            }
+            function onLoadedPasswordlist(result){
+                passwordlist = result.split(",");
+            }
+            function onLoadedEmaillist(result){
+                emaillist = result.split(",");
+            }
             function register() {
+                $("#warning").hide();
+                $("#userHasBeenPicked").hide();
+                $("#blankInput").hide();
                 username = $("#inputUsername").val();
                 password = $("#inputPassword").val();
                 repassword = $("#reInputPassword").val();
                 email = $("#inputEmail").val();
                 console.log('user : '+username+'\npass : '+ password+'\nrepass : '+repassword+'\nemail : '+email);
-                /*TODO: Send to the IoT server service
-                1.for loop to look up all the username
-                    1.1 check that username has not been pick
+                if( password == "" || username == ""){
+                    $("#blankInput").fadeIn();
+                }
+                else if( password !== repassword) {
+                    $("#warning").fadeIn();
+                }
+                /*NOTE: Send to the IoT server service
+                1.for loop to look up all the username /
+                    1.1 check that username has not been pick /
                 2.send information to IoT
                 3.go to top page*/
+                else {
+                    $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",onLoadedUserlist);
+                    $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",onLoadedPasswordlist);
+                    setTimeout(function (){console.log(userlist)},500);
+                    setTimeout(function (){
+                        console.log(userlist.length);
+                        if (userlist[0] !== "") {
+                            for (var i = 0 ; i < userlist.length ; i++) { //NOTE: Loop for checking more than one user from server
+                                if ( userlist[i] == username ) {
+                                    $("#userHasBeenPicked").fadeIn();
+                                    hasAccount = true;
+                                    break;
+                                }
+                            }
+                            if(!hasAccount){
+                                userlist.push(username);
+                                var userlistStr = userlist.join(",");
+                                passwordlist.push(password);
+                                var passwordlistStr = userlist.join(",");
+                                console.log(userlist);
+                                $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",{data:userlistStr});
+                                $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",{data:passwordlistStr});
+                            }
+                            hasAccount = false;
+                        }
+                        else {
+                            console.log('inner else');
+                            userlist = username;
+                            passwordlist = password;
+                            $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",{data:userlist});
+                            $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",{data:passwordlist});
+                            $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-num",{data:num_current});
+                        }
+                    },1000);
+                }
             }
             $("#submit-btn").click(register);
         </script>
