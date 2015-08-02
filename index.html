@@ -181,10 +181,11 @@
                 $("#humidity").text(humidity)
                 //TODO search and set image to this part.
                 $("state").text(state);
-                
             }
+            //NOTE: Change button color and text when change state and post data to server
             function postState(){
                 //TODO update state and state-btn
+                //http://api.jquery.com/toggleclass/ เผื่อใช้เปลี่ยนสีได้
                 $.post("http://exceed.cupco.de/iot/SeatBelt/clws-state"+num_current,{data:state});
             }
             
