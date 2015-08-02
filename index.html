@@ -130,11 +130,10 @@
     //NOTE: Server Element Variable
     var user_list;
     var pass_list;
-    var humidity_list;
-    var isRain_list;
-    var state_list;
-    var handle_list;
-
+    var mode;
+    var humidity;
+    var rain;
+    var state;
     //NOTE: Group of resource loader function
     //NOTE: Load list of id
     function onLoadedUserList(result){
@@ -144,54 +143,20 @@
     function onLoadedPasswordList(result){
         pass_list = result.split(",")
     }
-    //NOTE: Load Humidity value list
-    function onLoadedHumidityList(result){
-        humidity = result.split(",")
+    //NOTE: Load data
+    function onLoadedData(result){
+        var result_list = result.split("_")
+        humidity = result_list[0]
+        rain = result_list[1]
+        mode = result_list[2]
+        state = result_list[3]
     }
-    //NOTE: Load Raining status list
-    function onLoadedRainingStatus(result){
-        var listofRain = result.split(",")
-        for (var i in listofRain){
-            if (i===0){
-                isRain_list.push(false)
-            }
-            else {
-                isRain_list.push(true)
-            }
-        }
-    }
-    //NOTE: Load State
-    function onLoadedState(result){
-        for (i in result.split(",")) {
-            if (i===0) {
-                state_list.push("Keep")
-            }
-            else {
-                state_list.push("Extend")
-            }
-        }
-    }
-    //NOTE: Load handle type list
-    function onLoadedHandleList(result){
-        for (i in result.split(",")) {
-            if (i===0) {
-                handle_list.push(false)
-            }
-            else {
-                handle_list.push(true)
-            }
-        }
-    }
-
-
+    
     //NOTE: Load every reaource
     function loadResource(){
         $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",onLoadedUserList);
         $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",onLoadedPasswordList);
-        $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-humid-list",onLoadedHumidityList);
-        $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-rain-list",onLoadedRainingStatus);
-        $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-state-list",onLoadedState);
-        $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-handle-list",onLoadedHandleList);
+        $.get("http://exceed.cupco.de/iot/SeatBelt/board",onLoadedData);
     }
     loadResource();
 </script>
@@ -230,7 +195,6 @@
             }
         }
         num_current = -1;
-        $(".alert").fadeIn();
         return false
     }
 
@@ -244,7 +208,7 @@
             isLogin = true;
        }
        else{
-            //TODO write alert red box when failed to login
+            $(".alert").fadeIn();
         }
     }
     //NOTE: Switch to Front Page
@@ -264,9 +228,9 @@
 
     //NOTE: Action Function
     //NOTE: Update GUI
-    function updateGUI(){
+        function updateGUI(){
         $("#state").text(state);
-        if (isRain_list[num_current]) {
+        if (rain==="1") {
             $("#rain").text("Rainning")
             //TODO search and set image to this part.
             //NOTE: $("rain-img").attr("src",URLIMage")
@@ -277,22 +241,25 @@
         }
         $("#humidity").text(humidity)
         //TODO search and set image to this part.
-        $("state").text(state);
+        if (state==="1"){
+            $("state").text("Extend");
+        }
+        else { $("#state").text("Keep");}
         //TODO make button disable
     }
     //NOTE: Change button color and text when change state and post data to server
     function postState(){
         //TODO update state and state-btn
         //http://api.jquery.com/toggleclass/ เผื่อใช้เปลี่ยนสีได้
-        if (state_list[num_current]==="Keep") {
-            state_list[num_current]="Extend"
+        if (state==="1") {
+            state="0"
         }
         else {
-            state_list[num_current]="Keep"
+            state="1"
         }
-        handle_list[num_current]=false
-        $.post("http://exceed.cupco.de/iot/SeatBelt/clws-state-list",{data:state_list.join(",")});
-        $.post("http://exceed.cupco.de/iot/SeatBelt/clws-handle-list",{data:handle_list.join(",")});
+        mode = 0;
+        var dat = mode+"_"+state
+        $.post("http://exceed.cupco.de/iot/SeatBelt/board",{data:dat})
     }
     function hide() {
         $(".alert").hide();
