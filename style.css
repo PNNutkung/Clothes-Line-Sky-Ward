@@ -33,7 +33,7 @@ h1 {
     50% { color: seagreen; }
     60% { color: thistle; }
     70% { color: darkslategray; }
-    80% { color: peachpuff; }
+    80% { color: yellowgreen; }
     90% { color: darkgreen; }
     100% { color: olive; }
 }
@@ -117,7 +117,7 @@ h4 {
     bottom: -7px;
 }
 
-#front-page {
+#front-page,.maincontent {
     position: relative;
     top: -40px;
 }
