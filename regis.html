@@ -153,9 +153,9 @@
                                 userlist.push(username);
                                 var userlistStr = userlist.join(",");
                                 passwordlist.push(password);
-                                var passwordlistStr = userlist.join(",");
+                                var passwordlistStr = passwordlist.join(",");
                                 emaillist.push(email);
-                                var emaillistStr = userlist.join(",");
+                                var emaillistStr = emaillist.join(",");
                                 $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",{data:userlistStr});
                                 $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",{data:passwordlistStr});
                                 $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-email-list",{data:emaillistStr});
