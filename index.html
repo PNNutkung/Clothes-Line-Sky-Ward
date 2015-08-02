@@ -198,9 +198,9 @@
                      <div class="carousel-inner">
                         <div class="item active">
                            <!-- TODO: Find new picture -->
-                           <img src="images/rain.png" alt="" class="img-responsive weather-img" id="rain-img">
-                           <div class="text-center weather-text" id="rain">
-                              Rain
+                           <img src="images/cloth-out.png" alt="" class="img-responsive weather-img" id="dryclothes-img">
+                           <div class="text-center weather-text" id="dryclothes">
+                              Outdoor
                            </div>
                         </div>
                      </div>
@@ -337,10 +337,14 @@
              if (state==1){
                  $("#state").text("Outdoor");
                  $("#state-btn").text("PULL BACK");
+                 $("#dryclothes").text("Outdoor");
+                 $("#dryclothes-img").attr("src","images/cloth-out.png")
              }
              else {
                  $("#state").text("Indoor");
                  $("#state-btn").text("EXTEND")
+                 $("#dryclothes").text("Indoor");
+                 $("#dryclothes-img").attr("src","images/umbrella.png")
              }
              if (mode=="M") {
                  $("#auto-btn").removeClass("btn-warning disabled")
@@ -370,8 +374,7 @@
          function changeToAuto(){
              mode = "A";
              var dat = mode
-             $.post("http://exceed.cupco.de/iot/SeatBelt/web",{data:dat},             console.log(mode)
-)
+             $.post("http://exceed.cupco.de/iot/SeatBelt/web",{data:dat},console.log(mode))
          }
          function enterToLogin(){
              goToMainPage();
