@@ -1,8 +1,9 @@
 body {
     background-image: url(images/sky.jpg);
-    background-repeat:no-repeat;
-    background-size:cover;
-    background-position:center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .header {
@@ -44,7 +45,6 @@ h4 {
 .IDtext h4 {
     color: indianred;
     font-size: 20px;
-    padding-left: 50px;
 }
 
 .rowID {
@@ -85,19 +85,32 @@ h4 {
     font-size: 30px;
 }
 
+
+
 #state-btn {
     overflow: auto;
     width: 200px;
-    display: inline;
-    left: 300px;
+    position: relative;
+    margin-left:50%;
+    margin-right:50%;
+    
+}
+
+#auto-btn {
+    overflow: auto;
+    width: 150px;
+    position: relative;
+    
 }
 
 .regisText {
     font-size: 20px;
+    
 }
 
 .regisText legend {
     font-size: 25px;
+    color: indianred;
 }
 
 #inputUsername {

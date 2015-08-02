@@ -2,8 +2,8 @@
 <html>
      <head>
         <meta charset="utf8">
-        <title>Clothes line Sky Ward</title>
-        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+        <title>Clothesline Sky Ward</title>
+        <link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="bootstrap-material-design/dist/css/ripples.min.css">
         <link rel="stylesheet" href="bootstrap-material-design/dist/css/material.min.css">
         <link rel="stylesheet" href="bootstrap-material-design/dist/css/roboto.min.css">
@@ -15,7 +15,7 @@
            <div class="jumbotron header">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>Clothes line Sky Ward</h1>
+                    <h1>Clothesline Sky Ward</h1>
                 </div>
             </div>
             </div>
@@ -30,32 +30,31 @@
                </div>
                <!-- NOTE: /Login failed -->
             <div class="row rowID">
-               <div class="col-md-2 IDtext">
+               <div class="col-md-2 col-sm-2 IDtext text-center">
                    <h4>ID</h4>
                </div>
-                <div class="col-md-8 inputText">
+                <div class="col-md-8 col-sm-8 inputText">
                     <!-- NOTE: user-input -->
                     <input type="text" class="form-control" id="user-input" placeholder="input your ID" style="font-size:20px">
                 </div>
             </div>
             <div class="row rowID">
-                <div class="col-md-2 IDtext">
+                <div class="col-md-2 col-sm-2 IDtext text-center">
                     <h4>Password</h4>
                 </div>
-                <div class="col-md-8 inputText">
+                <div class="col-md-8 col-sm-8 inputText">
                     <!-- NOTE: pass-input -->
                     <input type="password" class="form-control" id="pass-input" placeholder="input your password" style="font-size:20px">
                 </div>
             </div>
             <div class="row text-center">
-                <div class="col-md-4">
+                
                     <!-- NOTE: register-btn -->
                     <a type="button" class="btn btn-primary" id="register-btn" style="font-size:20px" href="regis.html">Register</a>
-                </div>
-                <div class="col-md-1">
+                
                     <!-- NOTE: login-btn -->
                     <button type="button" class="btn btn-success btn-raised" id="login-btn" style="font-size:20px">Login</button>
-                </div>
+                
             </div>
             </div>
         </div>
@@ -63,8 +62,7 @@
         <div class="container" id="main-page">
             <div class="row">
                <!-- NOTE: humidity label -->
-
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                    <div class="jumbotron">
                     <div class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -77,10 +75,45 @@
                             </div>
                           </div>
                     </div>
-                </div>
+                    </div>
                 </div>
                 <!-- NOTE: rain status -->
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                   <div class="jumbotron">
+                    <div class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                               <!-- TODO: Find new picture -->
+                                <img src="images/rain.png" alt="" class="img-responsive" id="rain-img">
+                               <div class="text-center" id="rain">
+                                       Rain
+                               </div>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
+            <div class="row">
+               <!-- NOTE: humidity label -->
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                   <div class="jumbotron">
+                    <div class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item active">
+                               <!-- TODO: Find new picture -->
+                                <img src="images/humidity2.png" alt="" class="img-responsive" id="humidity-img">
+                               <div class="text-center" id="humidity">
+                                       Humidity: 0
+                               </div>
+                            </div>
+                          </div>
+                    </div>
+                    </div>
+                </div>
+                <!-- NOTE: rain status -->
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                    <div class="jumbotron">
                     <div class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -98,17 +131,17 @@
             </div>
             <div class="row">
                 <!-- NOTE: galileo status -->
-                <div class="col-md-3">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                     <div class="well well-md" id="state">Outdoor</div>
                 </div>
             </div>
             <div class="row">
                 <!-- NOTE: state-btn -->
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <button href="javascript:void(0)" class="btn btn-success" id="state-btn" style="font-size:30px">Pull Back</button>
                 </div>
                 <!-- NOTE: auto-btn -->
-                <div class="col-md-6">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <a href="javascript:void(0)" class="btn btn-warning disabled" id="auto-btn" style="font-size:30px">Auto</a>
                 </div>
             </div>
@@ -174,16 +207,13 @@
     //NOTE: Page Variable
     var front_page = $("#front-page")
     var main_page = $("#main-page")
-
     //NOTE: Local Element Variable
     var user;
     var pass;
     var num_current;
     var interval = setInterval(refresh,1000);
-
     //NOTE: Boolean Variable
     var isLogin = false;
-
     //NOTE: Boolean Function
     //NOTE: Check ID and pass
     function checkAccount(){
@@ -198,7 +228,6 @@
         num_current = -1;
         return false
     }
-
     //NOTE: Switching function
     //NOTE: Switch to Main Page
     function goToMainPage(){
@@ -219,7 +248,6 @@
         main_page.fadeOut();
         front_page.fadeIn();
     }
-
     //NOTE: refresh to update state
     function refresh(){
         loadResource();
@@ -227,7 +255,6 @@
             updateGUI();
         }
     }
-
     //NOTE: Action Function
     //NOTE: Update GUI
         function updateGUI(){
