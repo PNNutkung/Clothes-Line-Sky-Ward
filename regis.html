@@ -107,7 +107,6 @@
                 password = $("#inputPassword").val();
                 repassword = $("#reInputPassword").val();
                 email = $("#inputEmail").val();
-                console.log('user : '+username+'\npass : '+ password+'\nrepass : '+repassword+'\nemail : '+email);
                 if( password == "" || username == ""){
                     $("#blankInput").fadeIn();
                 }
@@ -123,9 +122,7 @@
                     $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",onLoadedUserlist);
                     $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",onLoadedPasswordlist);
                     $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-email-list",onLoadedEmaillist);
-                    setTimeout(function (){console.log(userlist)},500);
                     setTimeout(function (){
-                        console.log(userlist.length);
                         if (userlist[0] !== "") {
                             for (var i = 0 ; i < userlist.length ; i++) { //NOTE: Loop for checking more than one user from server
                                 if ( userlist[i] == username ) {
@@ -141,7 +138,6 @@
                                 var passwordlistStr = userlist.join(",");
                                 emaillist.push(email);
                                 var emaillistStr = userlist.join(",");
-                                console.log(userlist);
                                 $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",{data:userlistStr});
                                 $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",{data:passwordlistStr});
                                 $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-email-list",{data:emaillistStr});
@@ -149,7 +145,6 @@
                             hasAccount = false;
                         }
                         else {
-                            console.log('inner else');
                             userlist = username;
                             passwordlist = password;
                             emaillist = email;
