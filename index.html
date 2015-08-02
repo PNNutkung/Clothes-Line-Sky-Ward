@@ -68,8 +68,8 @@
                         <div class="carousel-inner">
                             <div class="item active">
                                <!-- TODO: Find new picture -->
-                                <img src="images/humidity2.png" alt="" class="img-responsive" id="humidity-img">
-                               <div class="text-center" id="humidity">
+                                <img src="images/humidity2.png" alt="" class="img-responsive weather-img" id="humidity-img">
+                               <div class="text-center weather-text" id="humidity">
                                        Humidity: 0
                                </div>
                             </div>
@@ -84,8 +84,8 @@
                         <div class="carousel-inner">
                             <div class="item active">
                                <!-- TODO: Find new picture -->
-                                <img src="images/rain.png" alt="" class="img-responsive" id="rain-img">
-                               <div class="text-center" id="rain">
+                                <img src="images/rain.png" alt="" class="img-responsive weather-img" id="rain-img">
+                               <div class="text-center weather-text" id="rain">
                                        Rain
                                </div>
                             </div>
@@ -103,8 +103,8 @@
                         <div class="carousel-inner">
                             <div class="item active">
                                <!-- TODO: Find new picture -->
-                                <img src="images/humidity2.png" alt="" class="img-responsive" id="humidity-img">
-                               <div class="text-center" id="humidity">
+                                <img src="images/humidity2.png" alt="" class="img-responsive weather-img" id="humidity-img">
+                               <div class="text-center weather-text" id="humidity">
                                        Humidity: 0
                                </div>
                             </div>
@@ -119,8 +119,8 @@
                         <div class="carousel-inner">
                             <div class="item active">
                                <!-- TODO: Find new picture -->
-                                <img src="images/rain.png" alt="" class="img-responsive" id="rain-img">
-                               <div class="text-center" id="rain">
+                                <img src="images/rain.png" alt="" class="img-responsive weather-img" id="rain-img">
+                               <div class="text-center weather-text" id="rain">
                                        Rain
                                </div>
                             </div>
@@ -234,6 +234,8 @@
             front_page.fadeOut()
             main_page.fadeIn()
             isLogin = true;
+            $("#user-input").val('')
+            $("#pass-input").val('')
        }
        else{
             $(".alert").fadeIn();
