@@ -163,7 +163,7 @@
                      <div class="carousel-inner">
                         <div class="item active">
                            <!-- TODO: Find new picture -->
-                           <img src="images/rain.png" alt="" class="img-responsive weather-img" id="rain-img">
+                           <img src="images/sun6.png" alt="" class="img-responsive weather-img" id="rain-img">
                            <div class="text-center weather-text" id="rain">
                               Rain
                            </div>
@@ -181,26 +181,9 @@
                      <div class="carousel-inner">
                         <div class="item active">
                            <!-- TODO: Find new picture -->
-                           <!--
                            <img src="images/temperature.png" alt="" class="img-responsive weather-img" id="temperature-img">
-                           <div class="text-center weather-text" id="temperature">
+                           <div class="text-center weather-text" id="degree">
                               0 Celcieus
-                           </div>-->
-                           <div class="thermo">
-                           <div class="de">
-        <div class="den">
-          <div class="dene">
-            <div class="denem">
-              <div class="deneme">
-                <div id="degree">21</div><strong>&deg;</strong>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
-                      </div>
-                       <div class="text-center weather-text" id="thermometer">
-                              Temperature
                            </div>
                         </div>
                      </div>
@@ -323,18 +306,18 @@
              $("#state").text(state);
              if (rain==1) {
                  $("#rain").text("Raining")
-                 $("#rain-img").attr("src","images/rain.png")
+                 $("#rain-img").attr("src","images/sun6.png")
              }
              else {  
                  $("#rain").text("Dry")
                  $("#rain-img").attr("src","images/sun.png")
              }
-             $("#degree").text(temp)
+             $("#degree").text(temp+" Celcius")
              $("#li").text("Light Intensity: "+light)
-             if (light>=500) {
+             if (light>=600) {
                  $("#li-img").attr("src","images/sun1.png")
              }
-             else if (light<500 && light>=300) {
+             else if (light<600 && light>=300) {
                  $("#li-img").attr("src","images/sun2.png")
              }
              else if (light>50 && light<300) {
