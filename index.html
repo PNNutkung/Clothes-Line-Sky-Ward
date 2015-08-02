@@ -23,6 +23,12 @@
         <!-- NOTE: front-page -->
         <div class="container" id="front-page">
            <div class="jumbotron">
+               <!-- NOTE: Login failed -->
+               <div class="alert alert-dismissable alert-danger">
+                   <button type="button" class="close" data-dismiss="alert">×</button>
+                   <strong>Invalid</strong> username or password.
+               </div>
+               <!-- NOTE: /Login failed -->
             <div class="row rowID">
                <div class="col-md-2 IDtext">
                    <h4>ID</h4>
@@ -120,7 +126,6 @@
 </script>
 <!-- NOTE: Jumbotron -->
 
-<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
 <script>
     //NOTE: Server Element Variable
     var user_list;
@@ -200,6 +205,7 @@
     });
 </script>
 <script>
+    $(".alert").hide();
     //NOTE: Page Variable
     var front_page = $("#front-page")
     var main_page = $("#main-page")
@@ -224,12 +230,14 @@
             }
         }
         num_current = -1;
+        $(".alert").fadeIn();
         return false
     }
 
     //NOTE: Switching function
     //NOTE: Switch to Main Page
     function goToMainPage(){
+        $(".alert").hide();
         if (checkAccount()) {
             front_page.fadeOut()
             main_page.fadeIn()
@@ -286,8 +294,12 @@
         $.post("http://exceed.cupco.de/iot/SeatBelt/clws-state-list",{data:state_list.join(",")});
         $.post("http://exceed.cupco.de/iot/SeatBelt/clws-handle-list",{data:handle_list.join(",")});
     }
+    function hide() {
+        $(".alert").hide();
+    }
 
     //Button ActionListener
+    $(".close").click(hide);
     $("#login-btn").click(goToMainPage)
     $("#logout-btn").click(goToFrontPage)
 
