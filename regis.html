@@ -21,7 +21,7 @@
         <div class="container">
             <!-- NOTE: Jumbotron -->
             <div class="jumbotron" id="page-content-pop">
-                
+
                 <div class="alert alert-dismissable alert-danger" id="userHasBeenPicked">
                     <button type="button" class="close" data-dismiss="alert">×</button>
                     <strong>Oh snap!</strong> This username has been used.
@@ -71,6 +71,15 @@
                         </fieldset>
                     </form>
                 </div>
+                <!-- NOTE: Register Success -->
+                <div class="regis-sucess">
+                    <div class="alert alert-dismissable alert-success text-center">
+                        <button type="button" class="close" data-dismiss="alert">×</button>
+                        <h2><strong>Success!</strong> Register completed.<br></h2>
+                        <p>This page will be redirect to Main page in 5 second.</p>
+                    </div>
+                </div>
+                <!-- NOTE: /Register Success -->
             </div>
             <!-- NOTE: /Jumbotron -->
         </div>
@@ -82,6 +91,7 @@
                 // This command is used to initialize some elements and make them work properly
                 $.material.init();
             });
+            $(".regis-sucess").hide();
             $("#blankInput").hide();
             $("#warning").hide();
             $("#userHasBeenPicked").hide();
@@ -108,7 +118,9 @@
                 emaillist = result.split(",");
             }
             function register() {
-                hide();
+                $("#blankInput").hide();
+                $("#warning").hide();
+                $("#userHasBeenPicked").hide();
                 username = $("#inputUsername").val();
                 password = $("#inputPassword").val();
                 repassword = $("#reInputPassword").val();
@@ -147,6 +159,12 @@
                                 $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",{data:userlistStr});
                                 $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",{data:passwordlistStr});
                                 $.post("http://exceed.cupco.de/iot/SeatBelt/clsw-email-list",{data:emaillistStr});
+                                setTimeout(function (){
+                                    $(".regis-sucess").fadeIn();
+                                },500);
+                                setTimeout(function () {
+                                    window.location.replace("index.html");
+                                },5000);
                             }
                             hasAccount = false;
                         }
