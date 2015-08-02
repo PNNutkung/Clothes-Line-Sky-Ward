@@ -114,142 +114,183 @@
             </div>
         </div>
         <script src="jquery-2.1.4.min.js"></script>
-        
-        <!-- NOTE: Jumbotron -->
-        
-        <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script>
+    //NOTE: Hide unused page
+    $("#main-page").hide();
+</script>
+<!-- NOTE: Jumbotron -->
 
-        <script src="js/ripples.min.js"></script>
-        <script src="js/material.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                // This command is used to initialize some elements and make them work properly
-                $.material.init();
-            });
-        </script>
+<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+<script>
+    //NOTE: Server Element Variable
+    var user_list;
+    var pass_list;
+    var humidity_list;
+    var isRain_list;
+    var state_list;
+    var handle_list;
+    
+    //NOTE: Group of resource loader function
+    //NOTE: Load list of id
+    function onLoadedUserList(result){
+        user_list = result.split(",")
+    }
+    //NOTE: Load password list
+    function onLoadedPasswordList(result){
+        pass_list = result.split(",")
+    }   
+    //NOTE: Load Humidity value list
+    function onLoadedHumidityList(result){
+        humidity = result.split(",")
+    }
+    //NOTE: Load Raining status list
+    function onLoadedRainingStatus(result){
+        var listofRain = result.split(",")
+        for (var i in listofRain){
+            if (i===0){
+                isRain_list.push(false)
+            }
+            else {
+                isRain_list.push(true)
+            }
+        }
+    }
+    //NOTE: Load State
+    function onLoadedState(result){
+        for (i in result.split(",")) {
+            if (i===0) {
+                state_list.push("Keep")
+            }
+            else {
+                state_list.push("Extend")
+            }
+        }
+    }
+    //NOTE: Load handle type list
+    function onLoadedHandleList(result){
+        for (i in result.split(",")) {
+            if (i===0) {
+                handle_list.push(false)
+            }
+            else {
+                handle_list.push(true)
+            }
+        }
+    }
+    
         
-        <script>
-            //NOTE: Page Variable
-            var front_page = $("#front-page")
-            var main_page = $("#main-page")
-            
-            //NOTE: Local Element Variable
-            var user;
-            var pass;
-            var num_current;
-            
-            //NOTE: Server Element Variable
-            //TODO uncomment two variable when connect to real server
-            //var user-sv;
-            //var pass-sv;
-            var num_account;
-            var humidity;
-            var isRain;
-            var state;
-            
-            //NOTE: Boolean Variable
-            var isLogin = false;
-            
-            //NOTE: Hide unused page
-            main_page.hide();
-            
-            //NOTE: Boolean Function
-            //NOTE: Check ID and pass
-            function checkAccount(){
-                user = $("#user-input").val()
-                pass = $("#pass-input").val()
-                $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-num",onLoadedNumUser);
-                for (var i=1;i<=num_account;i++) { //NOTE: Loop for checking more than one user from server
-                    $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-user"+i,onLoadedUser);
-                    $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-pass"+i,onLoadedPassword);
-                    num_current = i;
-                    if(user===user_sv&&pass===pass_sv) return true
-                }
-                return false
+    //NOTE: Load every reaource
+    function loadResource(){
+        $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-user-list",onLoadedUserList);
+        $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-pass-list",onLoadedPasswordList);
+        $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-humid-list",onLoadedHumidityList);
+        $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-rain-list",onLoadedRainingStatus);
+        $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-state-list",onLoadedState);
+        $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-handle-list",onLoadedHandleList);
+    }
+    loadResource();
+</script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="js/ripples.min.js"></script>
+<script src="js/material.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // This command is used to initialize some elements and make them work properly
+        $.material.init();
+    });
+</script>
+<script>
+    //NOTE: Page Variable
+    var front_page = $("#front-page")
+    var main_page = $("#main-page")
+    
+    //NOTE: Local Element Variable
+    var user;
+    var pass;
+    var num_current;
+    
+    //NOTE: Boolean Variable
+    var isLogin = false;
+    
+    //NOTE: Boolean Function
+    //NOTE: Check ID and pass
+    function checkAccount(){
+        user = $("#user-input").val()
+        pass = $("#pass-input").val()
+        for (var i =0;i<user_list.length;i++) {
+            if (user===user_list[i]&&pass===pass_list[i]) {
+                num_current = i;
+                return true;
             }
-            
-            //NOTE: Switching function
-            //NOTE: Switch to Main Page
-            function goToMainPage(){
-                //TODO uncomment every line when connect to server
-                //if (checkAccount()) {
-                    front_page.fadeOut()
-                    main_page.fadeIn()
-                    isLogin = true;
-               // }
-               // else{
-                    //TODO write alert red box when failed to login
-                //}
-            }
-            //NOTE: Switch to Front Page
-            function goToFrontPage(){
-                isLogin = false
-                main_page.fadeOut();
-                front_page.fadeIn();
-            }
-            
-            //NOTE: refresh to update state
-            function refresh(){
-                $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-humidity"+num_current,onLoadedHumidity);
-                $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-raining"+num_current,onLoadedRainingStatus);
-                $.get("http://exceed.cupco.de/iot/SeatBelt/clsw-state"+num_current,onLoadedState);
-                updateGUI();
-            }
-            
-            //NOTE: Action Function
-            //NOTE: Update GUI
-            function updateGUI(){
-                $("#state").text(state);
-                if (isRain) {
-                    $("#rain").text("Rainning")
-                    //TODO search and set image to this part.
-                    //NOTE: $("rain-img").attr("src",URLIMage")
-                }
-                else {
-                    $("#rain").text("Dry")
-                    //TODO search and set image to this part.
-                }
-                $("#humidity").text(humidity)
-                //TODO search and set image to this part.
-                $("state").text(state);
-            }
-            //NOTE: Change button color and text when change state and post data to server
-            function postState(){
-                //TODO update state and state-btn
-                //http://api.jquery.com/toggleclass/ เผื่อใช้เปลี่ยนสีได้
-                $.post("http://exceed.cupco.de/iot/SeatBelt/clws-state"+num_current,{data:state});
-            }
-            
-            //NOTE: Group of resource loader function
-            //NOTE: Load number of user
-            function onLoadedNumUser(result){
-                num_account=result
-            }
-            //NOTE: Load user id
-            function onLoadedUser(result){
-                user_sv = result
-            }
-            //NOTE: Load password
-            function onLoadedPassword(result){
-                pass_sv = result
-            }   
-            //NOTE: Load Humidity value
-            function onLoadedHumidity(result){
-                humidity = result
-            }
-            //NOTE: Load Raining status
-            function onLoadedRainingStatus(result){
-                if (result===0) isRain=false
-                else isRain=true
-            }
-            //NOTE: Load State
-            function onLoadedState(result){
-                state = result
-            }
-            //Button ActionListener
-            $("#login-btn").click(goToMainPage)
-            $("#logout-btn").click(goToFrontPage)
-        </script>
+        }
+        num_current = -1;
+        return false
+    }
+    
+    //NOTE: Switching function
+    //NOTE: Switch to Main Page
+    function goToMainPage(){
+        if (checkAccount()) {
+            front_page.fadeOut()
+            main_page.fadeIn()
+            isLogin = true;
+       }
+       else{
+            //TODO write alert red box when failed to login
+        }
+    }
+    //NOTE: Switch to Front Page
+    function goToFrontPage(){
+        isLogin = false
+        main_page.fadeOut();
+        front_page.fadeIn();
+    }
+    
+    //NOTE: refresh to update state
+    function refresh(){
+        loadResource();
+        if (isLogin) {
+            updateGUI();
+        }
+    }
+    
+    //NOTE: Action Function
+    //NOTE: Update GUI
+    function updateGUI(){
+        $("#state").text(state);
+        if (isRain_list[num_current]) {
+            $("#rain").text("Rainning")
+            //TODO search and set image to this part.
+            //NOTE: $("rain-img").attr("src",URLIMage")
+        }
+        else {
+            $("#rain").text("Dry")
+            //TODO search and set image to this part.
+        }
+        $("#humidity").text(humidity)
+        //TODO search and set image to this part.
+        $("state").text(state);
+        //TODO make button disable
+    }
+    //NOTE: Change button color and text when change state and post data to server
+    function postState(){
+        //TODO update state and state-btn
+        //http://api.jquery.com/toggleclass/ เผื่อใช้เปลี่ยนสีได้
+        if (state_list[num_current]==="Keep") {
+            state_list[num_current]="Extend"
+        }
+        else {
+            state_list[num_current]="Keep"
+        }
+        handle_list[num_current]=false
+        $.post("http://exceed.cupco.de/iot/SeatBelt/clws-state-list",{data:state_list.join(",")});
+        $.post("http://exceed.cupco.de/iot/SeatBelt/clws-handle-list",{data:handle_list.join(",")});
+    }
+    
+    //Button ActionListener
+    $("#login-btn").click(goToMainPage)
+    $("#logout-btn").click(goToFrontPage)
+    
+</script>
     </body>
 </html>
