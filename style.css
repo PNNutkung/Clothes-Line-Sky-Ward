@@ -17,25 +17,13 @@ body {
     font-family:  monospace;
 }
 
-h1 {
+.container h1 {
+    
     text-align: center;
     font-weight: bold;
+    color: white;
     font-size: 60px;
-    text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
-    animation: color-change 15s infinite;
-}
-
-@keyframes color-change {
-    10% { color: darkseagreen; }
-    20% { color: rosybrown; }
-    30% { color: plum; }
-    40% { color: darksalmon; }
-    50% { color: seagreen; }
-    60% { color: thistle; }
-    70% { color: darkslategray; }
-    80% { color: yellowgreen; }
-    90% { color: darkgreen; }
-    100% { color: olive; }
+    text-shadow: 0 0 16px #000000;
 }
 
 h4 {
