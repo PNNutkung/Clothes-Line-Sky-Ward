@@ -9,7 +9,6 @@
       <link rel="stylesheet" href="bootstrap-material-design/dist/css/roboto.min.css">
       <link rel="stylesheet" href="animate.css">
       <link rel="stylesheet" href="style.css">
-      
    </head>
    <body>
       <script src="jquery-2.1.4.min.js"></script>
@@ -24,7 +23,7 @@
          var temp;
          var rain;
          var state;
-        var light;
+         var light;
           var pos;
          //NOTE: Group of resource loader function
          //NOTE: Load list of id
@@ -65,37 +64,34 @@
             </div>
          </div>
       </div>
-      
       <!-- NOTE: Nav-bar -->
       <div class="container" id="nav-part">
-          <div class="row">
-              <div class="col-md-12">
-                  <div class="navbar navbar-inverse">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand active" href="javascript:void(0)">ClotheslineSkyWard</a>
-    </div>
-    <div class="navbar-collapse collapse navbar-responsive-collapse">
-        <ul class="nav navbar-nav">
-            <li class="active"><a href="javascript:void(0)">Home</a></li>
-            <li><a href="spec.html">Specification</a></li>
-            <li><a href="hero.html">Hero</a></li>
-            
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a href="about.html">About us</a></li>
-            <li><a href="https://github.com/PNNutkung/Clothes-Line-Sky-Ward/ " target="_blank">GitHub</a></li>
-        </ul>
-    </div>
-</div>
-              </div>
-          </div>
+         <div class="row">
+            <div class="col-md-12">
+               <div class="navbar navbar-inverse">
+                  <div class="navbar-header">
+                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     </button>
+                     <a class="navbar-brand active" href="javascript:void(0)">ClotheslineSkyWard</a>
+                  </div>
+                  <div class="navbar-collapse collapse navbar-responsive-collapse">
+                     <ul class="nav navbar-nav">
+                        <li class="active"><a href="javascript:void(0)">Home</a></li>
+                        <li><a href="spec.html">Specification</a></li>
+                        <li><a href="hero.html">Hero</a></li>
+                     </ul>
+                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="about.html">About us</a></li>
+                        <li><a href="https://github.com/PNNutkung/Clothes-Line-Sky-Ward/ " target="_blank">GitHub</a></li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
       </div>
-      
       <!-- NOTE: front-page -->
       <div class="container" id="front-page">
          <script>$("#front-page").hide()</script>
@@ -113,8 +109,8 @@
                <div class="col-md-8 col-sm-8 inputText">
                   <!-- NOTE: user-input -->
                   <form id="formID">
-                  <input type="text" class="form-control" id="user-input" placeholder="input your username" style="font-size:20px">
-                   </form>
+                     <input type="text" class="form-control" id="user-input" placeholder="input your username" style="font-size:20px">
+                  </form>
                </div>
             </div>
             <div class="row rowID">
@@ -124,7 +120,7 @@
                <div class="col-md-8 col-sm-8 inputText">
                   <!-- NOTE: pass-input -->
                   <form id="formPass">
-                  <input type="password" class="form-control" id="pass-input" placeholder="input your password" style="font-size:20px">
+                     <input type="password" class="form-control" id="pass-input" placeholder="input your password" style="font-size:20px">
                   </form>
                </div>
             </div>
@@ -136,96 +132,95 @@
             </div>
          </div>
       </div>
-      
       <!-- NOTE: main-page -->
       <div class="container maincontent" id="main-page" >
-        <div class="jumbotron" style ="background-color: #F8F8F8;">
-         <script>$("#main-page").hide()</script>
-         <div class="row">
-            <!-- NOTE: humidity label -->
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-               <div class="jumbotron">
-                  <div class="carousel slide" data-ride="carousel">
-                     <div class="carousel-inner">
-                        <div class="item active">
-                           <!-- TODO: Find new picture -->
-                           <img src="images/sun1.png" alt="" class="img-responsive weather-img" id="li-img">
-                           <div class="text-center weather-text" id="li">
-                              Humidity: 0
+         <div class="jumbotron" style ="background-color: #F8F8F8;">
+            <script>$("#main-page").hide()</script>
+            <div class="row">
+               <!-- NOTE: humidity label -->
+               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                  <div class="jumbotron">
+                     <div class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                           <div class="item active">
+                              <!-- TODO: Find new picture -->
+                              <img src="images/sun1.png" alt="" class="img-responsive weather-img" id="li-img">
+                              <div class="text-center weather-text" id="li">
+                                 Humidity: 0
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- NOTE: rain status -->
+               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                  <div class="jumbotron">
+                     <div class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                           <div class="item active">
+                              <!-- TODO: Find new picture -->
+                              <img src="images/sun6.png" alt="" class="img-responsive weather-img" id="rain-img">
+                              <div class="text-center weather-text" id="rain">
+                                 Rain
+                              </div>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
-            <!-- NOTE: rain status -->
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-               <div class="jumbotron">
-                  <div class="carousel slide" data-ride="carousel">
-                     <div class="carousel-inner">
-                        <div class="item active">
-                           <!-- TODO: Find new picture -->
-                           <img src="images/sun6.png" alt="" class="img-responsive weather-img" id="rain-img">
-                           <div class="text-center weather-text" id="rain">
-                              Rain
+            <div class="row">
+               <!-- NOTE: humidity label -->
+               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                  <div class="jumbotron">
+                     <div class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                           <div class="item active">
+                              <!-- TODO: Find new picture -->
+                              <img src="images/temperature.png" alt="" class="img-responsive weather-img" id="temperature-img">
+                              <div class="text-center weather-text" id="degree">
+                                 0 Celcieus
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- NOTE: rain status -->
+               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                  <div class="jumbotron">
+                     <div class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                           <div class="item active">
+                              <!-- TODO: Find new picture -->
+                              <img src="images/cloth-out.png" alt="" class="img-responsive weather-img" id="dryclothes-img">
+                              <div class="text-center weather-text" id="dryclothes">
+                                 Outdoor
+                              </div>
                            </div>
                         </div>
                      </div>
                   </div>
                </div>
             </div>
-         </div>
-         <div class="row">
-            <!-- NOTE: humidity label -->
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-               <div class="jumbotron">
-                  <div class="carousel slide" data-ride="carousel">
-                     <div class="carousel-inner">
-                        <div class="item active">
-                           <!-- TODO: Find new picture -->
-                           <img src="images/temperature.png" alt="" class="img-responsive weather-img" id="temperature-img">
-                           <div class="text-center weather-text" id="degree">
-                              0 Celcieus
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+            <div class="row">
+               <!-- NOTE: state-btn -->
+               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <button href="javascript:void(0)" class="btn btn-success" id="state-btn" style="font-size:30px">Pull Back</button>
+               </div>
+               <!-- NOTE: auto-btn -->
+               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                  <a href="javascript:void(0)" class="btn btn-warning disabled" id="auto-btn" style="font-size:30px">Auto</a>
                </div>
             </div>
-            <!-- NOTE: rain status -->
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-               <div class="jumbotron">
-                  <div class="carousel slide" data-ride="carousel">
-                     <div class="carousel-inner">
-                        <div class="item active">
-                           <!-- TODO: Find new picture -->
-                           <img src="images/cloth-out.png" alt="" class="img-responsive weather-img" id="dryclothes-img">
-                           <div class="text-center weather-text" id="dryclothes">
-                              Outdoor
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+            <div class="row">
+               <!-- NOTE: logout-btn -->
+               <div class="col-md-12">
+                  <button href="javascript:void(0)" class="btn btn-danger" id="logout-btn" style="font-size:20px">Logout</button>
                </div>
             </div>
          </div>
-         <div class="row">
-            <!-- NOTE: state-btn -->
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-               <button href="javascript:void(0)" class="btn btn-success" id="state-btn" style="font-size:30px">Pull Back</button>
-            </div>
-            <!-- NOTE: auto-btn -->
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-               <a href="javascript:void(0)" class="btn btn-warning disabled" id="auto-btn" style="font-size:30px">Auto</a>
-            </div>
-         </div>
-         <div class="row">
-            <!-- NOTE: logout-btn -->
-            <div class="col-md-12">
-               <button href="javascript:void(0)" class="btn btn-danger" id="logout-btn" style="font-size:20px">Logout</button>
-            </div>
-         </div>
-      </div>
       </div>
       <!-- NOTE: Jumbotron -->
       <script src="bootstrap-material-design\dist\js\ripples.min.js"></script>
